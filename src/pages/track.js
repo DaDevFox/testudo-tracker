@@ -1,4 +1,4 @@
-import styles from "../app/page.module.css";
+import styles from "@/styles/page.module.css";
 import { useState } from "react";
 
 export default function Track(props) {
