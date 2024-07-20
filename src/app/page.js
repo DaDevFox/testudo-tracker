@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "@/styles/page.module.css";
 import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
+import Navbar from "@/components/Navbar";
 import { useState, useEffect, useRef } from "react";
 
 const sections = [
@@ -91,6 +92,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <Navbar />
       <div className={styles.searchContainer}>
         <SearchBar onChange={(e) => setQuery(e.target.value)} />
         <SearchResults query={query} sections={sections} />
