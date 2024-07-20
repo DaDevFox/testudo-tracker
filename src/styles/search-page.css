@@ -61,3 +61,44 @@ body.active-modal {
     margin-left: 70%;
     margin-bottom: 1.5%;
 }
+
+
+/* Search Page Styles*/
+
+.main-div {
+    margin: 5% 0;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.prof-div {
+    position:absolute;
+    margin: 11% -35%;
+    width: 100%;
+    text-align: center;
+}
+
+.dept-div {
+    position:absolute;
+    margin: 11% 35%;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 35px;
+    margin: -0.7%;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.h1 {
+    margin: 0 0;
+}
+
