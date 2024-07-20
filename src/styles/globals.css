@@ -6,6 +6,9 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
+  --foreground-accent-rgb: 0, 0, 0;
+  --background-rgb: 230, 230, 230;
+  --background-accent-rgb: 255, 255, 255;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
@@ -43,6 +46,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
 
@@ -79,6 +83,60 @@
   margin: 0;
 }
 
+/* NAVBAR */
+
+.navbar {
+  min-width: 100vw;
+  max-width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  color: rgb(var(--foreground-accent-rgb));
+  background-color: rgb(var(--background-accent-rgb));
+  font-size: 0.8rem;
+
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.navbarContainer {
+  height: 2rem; /* height controlled by child to fill with center alignment on column-dir flexbox */
+  display: flex;
+  flex-direction: row;
+  list-style-type: none; /* Remove bullets */
+
+  align-items: center;
+}
+
+.navbarItem {
+  padding: 0rem 1rem 0rem 1rem;
+}
+
+.navbarItem {
+  position: relative;
+  padding: 0rem 1rem 0rem 1rem;
+  width: fit-content;
+}
+
+.navbarItem::after {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  top: 1.2rem;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  content: "";
+
+  height: 0.2rem;
+  background-color: red;
+}
+
+.navbarItem:hover::after {
+  width: 100%;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -87,12 +145,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-rgb));
 }
 
 a {
