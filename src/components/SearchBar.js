@@ -18,7 +18,6 @@ export default function SearchBar({ onChange }) {
   // }); // flag: remove event listeners before; also why adding every time?
 
   const [query, setQuery] = useState("");
-  // https://stackoverflow.com/questions/58349185/keeping-a-reference-to-a-react-state-variable
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -34,15 +33,6 @@ export default function SearchBar({ onChange }) {
         value={query}
         onChange={handleChange}
       />
-
-      {/* <p> */}
-      {/*   <input */}
-      {/*     type="checkbox" */}
-      {/*     checked={props.inStockOnly} */}
-      {/*     onChange={handleInStockChange} */}
-      {/*   />{" "} */}
-      {/*   Only show products in stock */}
-      {/* </p> */}
     </form>
   );
 }

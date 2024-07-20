@@ -23,10 +23,9 @@ export default function SearchResults({ query, sections }) {
       var close = fuzzyCompare(query, idStr(item)) <= fuzzyCutoff;
 
       return (
-        <a href={item.link}>
+        <a key={index} href={item.link}>
           <div
             className={`${close ? styles.searchResult_close : styles.searchResult_normal}`}
-            key={index}
           >
             {item.course_name} {item.section_number}
           </div>
