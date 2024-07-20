@@ -1,12 +1,14 @@
 import styles from "@/styles/page.module.css";
+import Navbar from "@/components/Navbar";
 import { useState } from "react";
 
 export default function Track(props) {
   return (
-    <div>
+    <main className={styles.main}>
+      <Navbar />
       <Row></Row>
       <Row></Row>
-    </div>
+    </main>
   );
 }
 
