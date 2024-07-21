@@ -6,9 +6,13 @@ import styles from "@/styles/components.module.css";
 import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
 import { useState, useEffect, useRef } from "react";
+<<<<<<< HEAD
 import WebsiteTitle from "@/components/WebsiteTitle";
+// import { useApp } from "@/components/useApp";
+=======
 import { useApp } from "@/components/useApp";
-import MongoSearch from "@/components/MongoSearch";
+>>>>>>> b061112 (mongo integration setup (not functional))
+
 const sections = [
   {
     link: "https://google.com",
@@ -92,6 +96,16 @@ const sections = [
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const app = useApp();
+
+  // authenticate DB access user
+  useEffect(() => {
+    // If no logged in user, log in
+    if (app && !app.currentUser) {
+      const anonymousUser = Realm.Credentials.anonymous();
+      app.logIn(anonymousUser);
+    }
+  }, [app, app?.currentUser]);
 
   return (
     <div>
