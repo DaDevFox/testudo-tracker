@@ -55,8 +55,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--page-padding);
-  min-height: 100vh;
+}
+
+.navbarItem {
+  position: relative;
+  padding: 0rem 1rem 0rem 1rem;
+  width: fit-content;
+}
+
+.navbarItem:hover {
+  outline: none;
+  border: none;
+}
+
+.navbarItem::after {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  top: 1.2rem;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  content: "";
+
+  height: 0.2rem;
+  background-color: red;
+}
+
+.navbarItem:hover::after {
+  width: 100%;
 }
 
 html,
