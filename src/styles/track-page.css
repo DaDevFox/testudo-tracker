@@ -1,0 +1,54 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #eee;
+}
+
+.courseName {
+  padding-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #aaa;
+  border: 2px solid;
+  border-bottom: 0;
+  box-sizing: border-box;
+}
+
+.row:last-child {
+  border-bottom: 2px solid;
+}
+
+.button {
+  padding: 10px 24px;
+  background-color: white;
+  width: 8.5rem;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+}
+/* trying to get color on button to stay when tracking and go back to default color when not tracking
+.button:visited {
+  background-color: yellow;
+}
+
+.button:hover {
+  background-color: skyblue;
+}
+
+.button:active {
+  background-color: #e21833;
+} */
