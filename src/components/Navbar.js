@@ -9,17 +9,17 @@ export default function Navbar(props) {
   const renderNoLogin = () => {
     return (
       <ul className="navbarContainer">
-        <li>
+        <li className="navbarLiItem">
           <Link className="navbarItem" href="/">
             Home
           </Link>
         </li>
-        <li>
+        <li className="navbarLiItem">
           <Link className="navbarItem" href="/register">
             Sign Up
           </Link>
         </li>
-        <li>
+        <li className="navbarLiItem">
           <Link className="navbarItem" href="/login">
             Log In
           </Link>
