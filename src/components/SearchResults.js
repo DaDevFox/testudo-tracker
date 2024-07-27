@@ -31,6 +31,7 @@ function queryItems(query, sections) {
     .slice(0, resultCount)
     .map((item) => {
       var close = fuzzyCompare(query, idStr(item)) <= fuzzyCutoff;
+      // if (!close) return null;
 
       return (
         <a key={idStr(item)} href={item.link}>

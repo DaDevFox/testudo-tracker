@@ -97,18 +97,23 @@
   color: #000;
   background-color: #fefefe;
 
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
   border-style: none;
   outline: none;
 }
 
 .searchResults {
+  border-radius: 0.5rem;
   padding: 1rem;
+  margin: 1rem 0rem 1rem 0rem;
   width: 20rem;
-  min-height: 2rem;
+  height: fit-content;
   color: #000;
   background-color: #fefefe;
-  transition: height font-style 1s;
+  transition:
+    margin 0.1s,
+    color 0s,
+    height 1s;
 }
 
 .searchResultDummy {
@@ -116,7 +121,7 @@
   padding: 1rem;
   font-weight: lighter;
   font-style: italic;
-  opacity: 0;
+  visibility: hidden;
 }
 
 .searchResult_normal:hover {
@@ -132,6 +137,10 @@
   background-color: #fefefe;
   margin: 0.1rem;
   border-radius: 0.1rem;
+}
+
+.searchResult_close:hover {
+  background-color: #f0f0f0;
 }
 
 .searchResult_close {
