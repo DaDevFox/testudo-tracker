@@ -6,6 +6,7 @@ import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect, useRef } from "react";
+import WebsiteTitle from "@/components/WebsiteTitle";
 // import { useApp } from "@/components/useApp";
 
 const sections = [
@@ -105,6 +106,7 @@ export default function Home() {
   return (
     <main className="main">
       <Navbar />
+      <WebsiteTitle />
       <div className={styles.searchContainer}>
         <SearchBar onChange={(e) => setQuery(e.target.value)} />
         <SearchResults query={query} sections={sections} />

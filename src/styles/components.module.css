@@ -1,5 +1,8 @@
 /* NAVBAR */
 .navbar {
+  height: var(
+    --navbar-height
+  ); /* height controlled by child to fill with center alignment on column-dir flexbox */
   min-width: 100vw;
   max-width: 100vw;
   position: absolute;
@@ -137,4 +140,22 @@
   margin: 0.1rem;
   border-radius: 0.1rem;
   font-weight: bold;
+}
+
+/* WEBSITE TITLE */
+.websiteTitleContainer {
+  width: 100vw;
+  background-color: rgb(var(--background-accent-light-rgb));
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0rem 0rem 2rem 0rem;
+}
+
+.websiteTitle {
+  margin: 2rem;
+  padding: 2rem;
+  background-color: var(--maryland-emphasis-background);
+  color: var(--maryland-emphasis-foreground);
+  width: fit-content;
 }
