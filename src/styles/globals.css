@@ -1,3 +1,5 @@
+/* COLORS */
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -6,45 +8,26 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
-  --foreground-accent-rgb: 0, 0, 0;
+  --foreground-accent-rgb: 40, 40, 40;
   --background-rgb: 230, 230, 230;
+  --background-selected-rgb: 225, 225, 225;
   --background-accent-rgb: 255, 255, 255;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
+    --foreground-accent-rgb: 210, 210, 210;
+    --background-rgb: 40, 40, 40;
+    --background-selected-rgb: 100, 100, 100;
+    --background-accent-rgb: 80, 80, 80;
   }
+}
+
+/* SIZING */
+:root {
+  --navbar-height: 2rem;
+  --page-padding: calc(var(--navbar-height) + 2rem);
 }
 
 * {
@@ -58,7 +41,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6rem;
+  padding: var(--page-padding);
   min-height: 100vh;
 }
 
