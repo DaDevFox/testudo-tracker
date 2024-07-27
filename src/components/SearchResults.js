@@ -1,6 +1,6 @@
 import { fuzzyCompare } from "@/utils/SearchUtils";
 import { useState, useRef } from "react";
-import styles from "@/styles/page.module.css";
+import styles from "@/styles/components.module.css";
 
 export default function SearchResults({ query, sections }) {
   if (query == null || query == "")

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "@/styles/page.module.css";
+import styles from "@/styles/components.module.css";
 
 export default function SearchBar({ onChange }) {
   const useKeyPress = (targetKey) => {
