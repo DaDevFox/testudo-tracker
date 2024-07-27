@@ -1,6 +1,6 @@
 // https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating
 import Link from "next/link";
-import "@/styles/globals.css";
+import styles from "@/styles/components.module.css";
 
 export default function Navbar(props) {
   const user = { loggedIn: false };
@@ -8,19 +8,19 @@ export default function Navbar(props) {
 
   const renderNoLogin = () => {
     return (
-      <ul className="navbarContainer">
-        <li className="navbarLiItem">
-          <Link className="navbarItem" href="/">
+      <ul className={styles.navbarContainer}>
+        <li className={styles.navbarLiItem}>
+          <Link className={styles.navbarItem} href="/">
             Home
           </Link>
         </li>
-        <li className="navbarLiItem">
-          <Link className="navbarItem" href="/register">
+        <li className={styles.navbarLiItem}>
+          <Link className={styles.navbarItem} href="/register">
             Sign Up
           </Link>
         </li>
-        <li className="navbarLiItem">
-          <Link className="navbarItem" href="/login">
+        <li className={styles.navbarLiItem}>
+          <Link className={styles.navbarItem} href="/login">
             Log In
           </Link>
         </li>
@@ -30,7 +30,7 @@ export default function Navbar(props) {
   const renderWithLogin = () => {};
 
   return (
-    <div className="navbar">
+    <div className={styles.navbar}>
       {user.loggedIn ? renderWithLogin() : renderNoLogin()}
     </div>
   );
