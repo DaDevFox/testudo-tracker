@@ -2,23 +2,34 @@ import { useState } from "react";
 import styles from "@/styles/page.module.css";
 
 export default function SearchBar({ onChange }) {
-  // // https://github.com/ngugikerei/usepopcorn/blob/3e024f62025bb6d6e58bfa902a1ea70b8daee04f/App-v2.js#L354
-  // const inputEl = useRef(null);
-  //
-  // useEffect(() => {
-  //   const callback = () => {
-  //     if (document.activeElement === inputEl.current) return;
-  //     if (e.code === "Enter") {
-  //       inputEl.current.focus();
-  //       setQuery("");
-  //     }
-  //   };
-  //
-  //   document.addEventListener("keydown", callback);
-  // }); // flag: remove event listeners before; also why adding every time?
+  const useKeyPress = (targetKey) => {
+    const [keyPressed, setKeyPressed] = useState(false);
 
+    useEffect(() => {
+      const downHandler = ({ key }) => {
+        if (key === targetKey) {
+          setKeyPressed(true);
+        }
+      };
+
+      const upHandler = ({ key }) => {
+        if (key === targetKey) {
+          setKeyPressed(false);
+        }
+      };
+
+      window.addEventListener("keydown", downHandler);
+      window.addEventListener("keyup", upHandler);
+
+      return () => {
+        window.removeEventListener("keydown", downHandler);
+        window.removeEventListener("keyup", upHandler);
+      };
+    }, [targetKey]);
+
+    return keyPressed;
+  };
   const [query, setQuery] = useState("");
-  // https://stackoverflow.com/questions/58349185/keeping-a-reference-to-a-react-state-variable
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -34,15 +45,6 @@ export default function SearchBar({ onChange }) {
         value={query}
         onChange={handleChange}
       />
-
-      {/* <p> */}
-      {/*   <input */}
-      {/*     type="checkbox" */}
-      {/*     checked={props.inStockOnly} */}
-      {/*     onChange={handleInStockChange} */}
-      {/*   />{" "} */}
-      {/*   Only show products in stock */}
-      {/* </p> */}
     </form>
   );
 }

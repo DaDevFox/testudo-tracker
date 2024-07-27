@@ -1,4 +1,4 @@
-import styles from "@/styles/globals.css";
+import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 
 export default function Register(props) {
