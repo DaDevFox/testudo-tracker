@@ -1,104 +1,59 @@
-/* Modal Styles */
-
-
-body.active-modal {
-    overflow-y: hidden;
-}
-
-.btn-modal {
-    padding: 6px 7px;
-    /*display: block;*/
-    margin: -3px 0;
-    font-size: 18px;
-    cursor: pointer;
-    text-align: left;
-    width: 400px;
-
-}
-
-.btn-div {
-    width: 400px;
-    margin: 0 37%;
-}
-
-.modal, .overlay {
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-}
-
-.overlay {
-    background: rgba(49,49,49,0.8);
-}
-.modal-content {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    line-height: 1.4;
-    background: #f1f1f1;
-    padding: 14px 28px;
-    border-radius: 3px;
-    max-width: 600px;
-    min-width: 525px;
-    text-align: left;
-    font-size: 23px;
-}
-
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px 7px;
-}
-
-
-.section-add {
-    margin-left: 70%;
-    margin-bottom: 1.5%;
-}
-
 
 /* Search Page Styles*/
 
-.main-div {
-    margin: 5% 0;
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
 
+.title-container {
+    width: 100vw;
+    background-color: rgb(var(--background-accent-light-rgb));
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0rem 0rem 1.2rem 0rem;
 }
 
-.prof-div {
-    position:absolute;
-    margin: 11% -35%;
-    width: 100%;
-    text-align: center;
+.title-span {
+    margin: 2rem;
+    margin-bottom: 0.7rem;
+    padding: 2rem;
+    padding-bottom: 0.5rem;
+    padding-top: 3rem;
+    width: fit-content;
+    font-family: var(--font-mono);
+    font-size: 28px;
 }
 
-.dept-div {
-    position:absolute;
-    margin: 11% 35%;
-    width: 100%;
-    text-align: center;
-}
-
-h2 {
-    font-size: 35px;
-    margin: -0.7%;
-}
-
-.dropdown {
+.search-div {
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
+    margin: 0 0 0 0;
 }
 
-.h1 {
-    margin: 0 0;
+.title-block {
+    display: flex;
+    width: 38rem;
+    height: 15px;
+    background-color: var(--maryland-red);
+    margin-bottom: 3.3%;
 }
+
+.subtitle-block {
+    display: flex;
+    width: 21rem;
+    height: 8.2px;
+    background-color: var(--maryland-gold);
+    margin-bottom: 2.2%;
+}
+
+.next-sem {
+    font-size: 20px;
+    font-family: var(--font-mono);
+    margin-bottom: 0.7%;
+}
+
+.focusHandlerDiv {
+    height: 19.5rem;
+    width: 41rem;
+}
+
 
