@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: left;
-  padding: 6rem;
+  padding: rem;
   min-height: 100vh;
 }
 
 .course {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 3rem;
   background-color: #eee;
 }
 
@@ -40,15 +40,36 @@
   border-radius: 10px;
   border-color: black;
 }
-/* trying to get color on button to stay when tracking and go back to default color when not tracking
-.button:visited {
-  background-color: yellow;
-}
 
 .button:hover {
-  background-color: skyblue;
+  background-color: #ef5a6e;
 }
 
-.button:active {
+.buttonTracking {
+  padding: 10px 24px;
   background-color: #e21833;
-} */
+  width: 8.5rem;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+}
+
+.buttonTracking:hover {
+  background-color: #bf293d;
+}
+
+.progressBar {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  height: 0.5rem;
+}
+
+.progressBar::-webkit-progress-value {
+  background-color: #e21833;
+  border-radius: 10px;
+}
+
+.progressBar::-webkit-progress-bar {
+  background-color: #777777;
+  border-radius: 10px;
+}
