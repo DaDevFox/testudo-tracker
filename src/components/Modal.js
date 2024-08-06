@@ -1,54 +1,50 @@
-import React, {useState} from "react"
-import "../styles/search-page.css"
+import React, { useState } from "react";
 
-const Modal = ({buttonName}) => {
-    
-    // The modal starts off as hidden
-    const [modal, setModal] = useState(false)
+import "@/styles/page.module.css";
+import styles from "@/styles/components.module.css";
+import "@/styles/globals.css";
+import "@/styles/search-page.module.css";
 
-    const toggleModal = () => {
-        setModal(!modal)
-    }
-    
+const Modal = ({ buttonName }) => {
+  // The modal starts off as hidden
+  const [modal, setModal] = useState(false);
 
-    return (
-        
-        <div className="btn-div">
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
-            <div>
-                <button onClick={toggleModal} className="btn-modal">
-                    {buttonName}
-                </button>
+  return (
+    <div>
+      <div className={styles.btnDiv} onClick={toggleModal}>
+        {buttonName}
+      </div>
+
+      {modal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModal}></div>
+
+          <div className={styles.modalContent}>
+            <div className={styles.modalCloseDiv} onClick={toggleModal}>
+              <span>Close</span>
+              <div className={styles.modalCloseBar}></div>
             </div>
 
+            {/* Eventually, we should add a pop up when the class is successfully tracked */}
+            <div className={styles.modalTrackDiv}>
+              Track
+              <div className={styles.modalTrackBar}></div>
+            </div>
 
-        {modal && (
-                <div className="modal">
-                    <div className="overlay" onClick={toggleModal}></div>
-
-                    <div className="modal-content">
-                        <button className="close-modal" onClick={toggleModal} >Close</button>
-                        
-                        <h2>{buttonName}</h2>
-
-                        <label className="section-label">Section 1:</label>   <button className="section-add" >Add</button>
-                        <br></br>
-                        <label className="section-label">Section 2:</label>   <button className="section-add" >Add</button>
-                        <br></br>
-                        <label className="section-label">Section 3:</label>   <button className="section-add" >Add</button>
-                        <br></br>
-                        <label className="section-label">Section 4:</label>   <button className="section-add" >Add</button>
-                    </div>
-                </div>
-        )}
-
+            <h2 className={styles.modalTtile}>Track this Class?</h2>
+            <p className={styles.modalInfo}>{buttonName}</p>
+            <p className={styles.modalInfo}>Proffessor: Lebron James</p>
+            <p className={styles.modalInfo}>Timings: MWF 2:30-3:15 PM</p>
+            <p className={styles.modalInfo}>Open Seats: 0, Waitlist: 0</p>
+          </div>
         </div>
-        
+      )}
+    </div>
+  );
+};
 
-
-        
-        
-    )
-}
-
-export default Modal 
+export default Modal;
