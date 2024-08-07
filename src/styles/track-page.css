@@ -18,21 +18,46 @@
 }
 
 .row {
+  background-color: #aaa;
+  border: 2px solid;
+  border-bottom: 0;
+}
+
+.row div {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
+}
+
+.headerRow {
+  padding: 1rem;
   background-color: #aaa;
   border: 2px solid;
   border-bottom: 0;
   box-sizing: border-box;
+  font-weight: 900;
 }
 
 .row:last-child {
   border-bottom: 2px solid;
 }
 
-.button {
+.progressBar {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  height: 0.5rem;
+}
+
+.progressBar::-webkit-progress-value {
+  background-color: #e21833;
+  border-radius: 10px;
+}
+
+.progressBar::-webkit-progress-bar {
+  background-color: #777777;
+  border-radius: 10px;
+}
+
+/* .button {
   padding: 10px 24px;
   background-color: white;
   width: 8.5rem;
@@ -56,20 +81,8 @@
 
 .buttonTracking:hover {
   background-color: #bf293d;
-}
+} */
 
-.progressBar {
-  -webkit-appearance: none;
-  border-radius: 10px;
-  height: 0.5rem;
-}
-
-.progressBar::-webkit-progress-value {
-  background-color: #e21833;
-  border-radius: 10px;
-}
-
-.progressBar::-webkit-progress-bar {
-  background-color: #777777;
-  border-radius: 10px;
-}
+/* * {
+  outline: 1px solid red !important;
+} */

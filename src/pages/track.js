@@ -10,6 +10,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 3,
+      status: "Open",
     },
     {
       course: "CMSC131",
@@ -17,6 +18,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 9,
+      status: "Open",
     },
     {
       course: "CMSC131",
@@ -24,6 +26,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 0,
+      status: "Waitlist Available",
     },
     {
       course: "CMSC131",
@@ -31,6 +34,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 12,
+      status: "Open",
     },
     {
       course: "CMSC131",
@@ -38,6 +42,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 0,
+      status: "Waitlist Available",
     },
     {
       course: "CMSC131",
@@ -45,6 +50,7 @@ export default function Track(props) {
       instructor: "Pedram Sadeghian",
       seats: 36,
       seatsOpen: 5,
+      status: "Open",
     },
     {
       course: "CMSC131",
@@ -52,6 +58,7 @@ export default function Track(props) {
       instructor: "Pedram Sadeghian",
       seats: 36,
       seatsOpen: 19,
+      status: "Open",
     },
     {
       course: "CMSC131",
@@ -59,6 +66,7 @@ export default function Track(props) {
       instructor: "Pedram Sadeghian",
       seats: 36,
       seatsOpen: 0,
+      status: "Waitlist Available",
     },
     {
       course: "CMSC131",
@@ -66,6 +74,7 @@ export default function Track(props) {
       instructor: "Pedram Sadeghian",
       seats: 36,
       seatsOpen: 9,
+      status: "Open",
     },
     {
       course: "CMSC131",
@@ -73,6 +82,7 @@ export default function Track(props) {
       instructor: "Pedram Sadeghian",
       seats: 36,
       seatsOpen: 3,
+      status: "Open",
     },
   ];
   const CMSC132sections = [
@@ -82,6 +92,7 @@ export default function Track(props) {
       instructor: "Larry Herman",
       seats: 36,
       seatsOpen: 2,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -89,6 +100,7 @@ export default function Track(props) {
       instructor: "Larry Herman",
       seats: 36,
       seatsOpen: 1,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -96,6 +108,7 @@ export default function Track(props) {
       instructor: "Larry Herman",
       seats: 36,
       seatsOpen: 10,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -103,6 +116,7 @@ export default function Track(props) {
       instructor: "Larry Herman",
       seats: 36,
       seatsOpen: 0,
+      status: "Waitlist Available",
     },
     {
       course: "CMSC132",
@@ -110,6 +124,7 @@ export default function Track(props) {
       instructor: "Larry Herman",
       seats: 36,
       seatsOpen: 15,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -117,6 +132,7 @@ export default function Track(props) {
       instructor: "Nora Burkhauser",
       seats: 36,
       seatsOpen: 7,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -124,6 +140,7 @@ export default function Track(props) {
       instructor: "Nora Burkhauser",
       seats: 36,
       seatsOpen: 4,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -131,6 +148,7 @@ export default function Track(props) {
       instructor: "Nora Burkhauser",
       seats: 36,
       seatsOpen: 19,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -138,6 +156,7 @@ export default function Track(props) {
       instructor: "Nora Burkhauser",
       seats: 36,
       seatsOpen: 8,
+      status: "Open",
     },
     {
       course: "CMSC132",
@@ -145,6 +164,7 @@ export default function Track(props) {
       instructor: "Nora Burkhauser",
       seats: 36,
       seatsOpen: 0,
+      status: "Waitlist Available",
     },
   ];
 
@@ -156,6 +176,7 @@ export default function Track(props) {
       seatsAval={(section.seats - section.seatsOpen) / section.seats}
       seats={section.seats}
       seatsOpen={section.seatsOpen}
+      status={section.status}
     />
   ));
 
@@ -167,28 +188,50 @@ export default function Track(props) {
       seatsAval={(section.seats - section.seatsOpen) / section.seats}
       seats={section.seats}
       seatsOpen={section.seatsOpen}
+      status={section.status}
     />
   ));
 
   return (
     <main className="main">
       <Navbar />
-      <Course course="CMSC131">{CMSC131section_num}</Course>
-      <Course course="CMSC132">{CMSC132section_num}</Course>
+      <Course course="CMSC131">
+        <table>
+          <Header />
+          {CMSC131section_num}
+        </table>
+      </Course>
+
+      <Course course="CMSC132">
+        <table>
+          <Header />
+          {CMSC132section_num}
+        </table>
+      </Course>
     </main>
   );
 }
 
-function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen }) {
+function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
   return (
-    <div className="row">
-      <div>{sectionNum}</div>
-      <progress value={seatsAval} className="progressBar" />
-      <div>{seatsOpen}</div>
-      <div>{seats}</div>
-      <div>{instructor}</div>
-      <Button />
-    </div>
+    <tr className="row">
+      <td>{sectionNum}</td>
+      <td>
+        <progress value={seatsAval} className="progressBar" />
+      </td>
+      <td>{seatsOpen}</td>
+      <td>{seats}</td>
+      <td>{instructor}</td>
+      <td>{status}</td>
+    </tr>
+    // <div className="row">
+    //   <div></div>
+    //
+    //   <div>{seatsOpen}</div>
+    //   <div>{seats}</div>
+    //   <div>{instructor}</div>
+    //   <div>{status}</div>
+    // </div>
   );
 }
 
@@ -201,24 +244,28 @@ function Course({ children, course }) {
   );
 }
 
-function Button() {
-  const [tracking, setTracking] = useState(false);
-
-  return (
-    <button
-      onClick={() => setTracking(!tracking)}
-      className={"button" + (tracking ? "Tracking" : "")}
-    >
-      {tracking ? "Tracking" : "Track"}
-    </button>
-  );
-}
-
 function Header() {
   return (
-    <div>
-      <div>Section</div>
-      <div>Instructor</div>
-    </div>
+    <tr className="headerRow">
+      <th>Section</th>
+      <th>Availability</th>
+      <th>Open Seats</th>
+      <th>Total Seats</th>
+      <th>Instructor</th>
+      <th>Status</th>
+    </tr>
   );
 }
+
+// function Button() {
+//   const [tracking, setTracking] = useState(false);
+
+//   return (
+//     <button
+//       onClick={() => setTracking(!tracking)}
+//       className={"button" + (tracking ? "Tracking" : "")}
+//     >
+//       {tracking ? "Tracking" : "Track"}
+//     </button>
+//   );
+// }
