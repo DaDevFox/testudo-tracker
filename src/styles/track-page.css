@@ -1,10 +1,10 @@
-.main {
+/* .main {
   display: flex;
   flex-direction: column;
   align-items: left;
   padding: rem;
   min-height: 100vh;
-}
+} */
 
 .course {
   display: flex;
@@ -17,29 +17,34 @@
   padding-bottom: 1rem;
 }
 
-.row {
-  background-color: #aaa;
-  border: 2px solid;
-  border-bottom: 0;
+.table {
+  /* border: 2px solid black; */
+  border-collapse: collapse;
 }
 
-.row div {
-  display: flex;
-  padding: 1rem;
+.row {
+  background-color: #aaa;
+  text-align: center;
+}
+
+.row td {
+  /* border: 2px solid black; */
+  padding: 0.5rem;
 }
 
 .headerRow {
   padding: 1rem;
   background-color: #aaa;
-  border: 2px solid;
-  border-bottom: 0;
-  box-sizing: border-box;
   font-weight: 900;
 }
-
-.row:last-child {
-  border-bottom: 2px solid;
+.headerRow th {
+  /* border: 2px solid black; */
+  padding: 0.5rem;
 }
+
+/* .row:last-child {
+  border-bottom: 2px solid;
+} */
 
 .progressBar {
   -webkit-appearance: none;

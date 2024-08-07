@@ -1,6 +1,7 @@
 import styles from "@/styles/track-page.css";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
+import "@/styles/globals.css";
 
 export default function Track(props) {
   const CMSC131sections = [
@@ -196,14 +197,14 @@ export default function Track(props) {
     <main className="main">
       <Navbar />
       <Course course="CMSC131">
-        <table>
+        <table className="table">
           <Header />
           {CMSC131section_num}
         </table>
       </Course>
 
       <Course course="CMSC132">
-        <table>
+        <table className="table">
           <Header />
           {CMSC132section_num}
         </table>
