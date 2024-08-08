@@ -13,6 +13,9 @@ import {
 import { auth } from "@/firebase/config";
 import { AuthErrorCodes } from "firebase/auth";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/config";
+
 export default function Register(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
