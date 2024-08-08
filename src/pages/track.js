@@ -27,7 +27,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 0,
-      status: "Waitlist Available",
+      status: "Waitlist Open",
     },
     {
       course: "CMSC131",
@@ -43,7 +43,7 @@ export default function Track(props) {
       instructor: "Elias Gonzalez",
       seats: 36,
       seatsOpen: 0,
-      status: "Waitlist Available",
+      status: "Waitlist Open",
     },
     {
       course: "CMSC131",
@@ -67,7 +67,7 @@ export default function Track(props) {
       instructor: "Pedram Sadeghian",
       seats: 36,
       seatsOpen: 0,
-      status: "Waitlist Available",
+      status: "Waitlist Open",
     },
     {
       course: "CMSC131",
@@ -117,7 +117,7 @@ export default function Track(props) {
       instructor: "Larry Herman",
       seats: 36,
       seatsOpen: 0,
-      status: "Waitlist Available",
+      status: "Waitlist Open",
     },
     {
       course: "CMSC132",
@@ -165,7 +165,7 @@ export default function Track(props) {
       instructor: "Nora Burkhauser",
       seats: 36,
       seatsOpen: 0,
-      status: "Waitlist Available",
+      status: "Waitlist Open",
     },
   ];
 
@@ -225,14 +225,6 @@ function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
       <td>{instructor}</td>
       <td>{status}</td>
     </tr>
-    // <div className="row">
-    //   <div></div>
-    //
-    //   <div>{seatsOpen}</div>
-    //   <div>{seats}</div>
-    //   <div>{instructor}</div>
-    //   <div>{status}</div>
-    // </div>
   );
 }
 
