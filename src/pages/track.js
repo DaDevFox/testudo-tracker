@@ -197,17 +197,13 @@ export default function Track(props) {
     <main className="main">
       <Navbar />
       <Course course="CMSC131">
-        <table className="table">
-          <Header />
-          {CMSC131section_num}
-        </table>
+        <Header />
+        {CMSC131section_num}
       </Course>
 
       <Course course="CMSC132">
-        <table className="table">
-          <Header />
-          {CMSC132section_num}
-        </table>
+        <Header />
+        {CMSC132section_num}
       </Course>
     </main>
   );
@@ -232,7 +228,7 @@ function Course({ children, course }) {
   return (
     <div className="course">
       <div className="courseName">{course}</div>
-      {children}
+      <table className="table">{children}</table>
     </div>
   );
 }
