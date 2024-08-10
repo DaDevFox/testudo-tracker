@@ -30,6 +30,7 @@
     --background-accent-rgb: 80, 80, 80;
     --background-accent-light-rgb: 60, 60, 60;
   }
+
 }
 
 /* SIZING */
@@ -57,6 +58,70 @@
   align-items: center;
   padding: var(--page-padding);
   min-height: 100vh;
+}
+
+/* NAVBAR */
+
+.navbar {
+  min-width: 100vw;
+  max-width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  color: rgb(var(--foreground-accent-rgb));
+  background-color: rgb(var(--background-accent-rgb));
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TEMP VOTE ON THIS */
+.navbarLiItem {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbarItem {
+  padding: 0rem 1rem 0rem 1rem;
+}
+
+.navbarItem {
+  position: relative;
+  padding: 0rem 1rem 0rem 1rem;
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbarItem:hover {
+  /* option 2 */
+  /* transition: all 0.2s steps(2, jump-start); */
+  transition: all 0.2s;
+  background-color: #dedede;
+}
+
+.navbarItem::after {
+  /* option 2 */
+  /* transition: all 0.2s steps(4, jump-end); */
+  transition: all 0.2s;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 0;
+  content: "";
+
+  height: 0.2rem;
+  background-color: red;
+}
+
+.navbarItem:hover::after {
+  width: 100%;
 }
 
 html,

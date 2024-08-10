@@ -44,6 +44,7 @@ export default function SearchBar({ onChange }) {
         placeholder="Search..."
         value={query}
         onChange={handleChange}
+
       />
     </form>
   );

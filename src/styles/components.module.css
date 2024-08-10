@@ -91,12 +91,11 @@
 }
 
 .searchBar {
-  width: 20rem;
+  width: 41rem;
   margin: 0px;
   padding: 1rem;
   color: #000;
   background-color: #fefefe;
-
   border-radius: 0.5rem;
   border-style: none;
   outline: none;
@@ -134,8 +133,10 @@
 
 .searchResult_normal {
   padding: 0.6rem;
+  padding-left: 0;
   background-color: #fefefe;
-  margin: 0.1rem;
+  font-family: var(--font-mono);
+  /*margin: 0.1rem;*/
   border-radius: 0.1rem;
 }
 
@@ -145,9 +146,11 @@
 
 .searchResult_close {
   padding: 0.6rem;
+  padding-left: 0;
   background-color: #fefefe;
-  margin: 0.1rem;
+  /*margin: 0.1rem;*/
   border-radius: 0.1rem;
+  font-family: var(--font-mono);
   font-weight: bold;
 }
 
@@ -168,3 +171,135 @@
   color: var(--maryland-emphasis-foreground);
   width: fit-content;
 }
+
+/* MODAL */
+
+body.activeModal {
+  overflow-y: hidden;
+}
+
+.btnDiv {
+  width: 41rem;
+  margin: 0 0;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+.modalContent {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 20px 28px;
+  border-radius: 3px;
+  min-height: 12rem;
+  max-width: 900px;
+  min-width: 40rem;
+  text-align: left;
+  font-size: 23px;
+  font-weight: normal;
+}
+
+
+.modalCloseDiv {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  padding: 0 0;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.75s ease-out;
+}
+
+.modalCloseDiv span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.75s;
+}
+
+.modalCloseDiv span:after {
+  content: '\274c';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.75s;
+}
+
+.modalCloseDiv:hover span {
+  padding-right: 25px;
+}
+
+.modalCloseDiv:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.modalCloseBar {
+  position: absolute;
+  width: 3.0rem;
+  height: 0.3rem;
+  margin-top: -0.1px;
+  background-color: var(--maryland-red);
+  transition: 0.75s ease-out;
+}
+
+
+/* I would like to change the font of the track button...but idk to what...*/
+.modalTrackDiv {
+  position: absolute;
+  top: 7.2rem;
+  right: 2.6rem;
+  padding: 0 0;
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  cursor: pointer;
+  width: 5.rem;
+  text-align: center;
+
+  background: #f1f1f1;
+
+  background: linear-gradient(to left, #f1f1f1 50%, green 50%) right;
+  background-size: 200%;
+  transition: 0.45s ease-out;
+}
+
+.modalTrackDiv:hover {
+  background-position: left;
+  color: white;
+}
+
+.modalTrackBar {
+  position: absolute;
+  width: 5.8rem;
+  height: 0.4rem;
+  background-color: green;
+  margin-left: 0rem;
+  margin-top: -4px;
+}
+
+
+.modalInfo {
+  margin-top: 1.5%;
+  font-size: 22px;
+}
+
+
