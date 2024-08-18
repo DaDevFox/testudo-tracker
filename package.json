@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mongodb": "^6.5.9",
     "abort-controller": "^3.0.0",
     "axios": "^1.7.4",
     "firebase": "^10.12.5",
