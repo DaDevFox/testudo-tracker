@@ -6,7 +6,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "@/firebase/config";
 
 export default function Register(props) {
@@ -20,8 +23,10 @@ export default function Register(props) {
     e.preventDefault();
     setError("");
     createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        sendEmailVerification(auth.currentUser).then(() => {
+          router.push("/verify");
+        });
       })
       .catch((error) => setError(error.message));
     setEmail("");

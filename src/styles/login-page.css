@@ -23,7 +23,7 @@
   background: var(--maryland-gold);
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
+  border-radius: 3px;
   padding: 3rem;
   width: 26rem;
   text-wrap: nowrap;

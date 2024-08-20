@@ -49,7 +49,7 @@ export default function Login(props) {
             Log In
           </button>
           <p>
-            Already have an account?{" "}
+            Don&rsquo;t have an account?{" "}
             <Link
               href="/register"
               style={{ color: "darkblue", textDecoration: "underline" }}
