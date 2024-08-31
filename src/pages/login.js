@@ -1,4 +1,6 @@
-import styles from "@/styles/globals.css";
+import "@/styles/globals.css";
+import styles from "@/styles/page.module.css";
+
 import Navbar from "@/components/Navbar";
 import "@/styles/login-page.css";
 

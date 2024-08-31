@@ -1,31 +1,40 @@
-import React, {useState} from "react"
+import React, { useState } from "react";
 
-import "@/styles/page.module.css"
-import styles from '@/styles/components.module.css'
+import "@/styles/page.module.css";
+import styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
-import '@/styles/search-page.css'
+import "@/styles/search-page.module.css";
 
-const Modal = ({buttonName}) => {
-    
-    // The modal starts off as hidden
-    const [modal, setModal] = useState(false)
+const Modal = ({ buttonName }) => {
+  // The modal starts off as hidden
+  const [modal, setModal] = useState(false);
 
-    const toggleModal = () => {
-        setModal(!modal)
-    }
-    
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
-    return (
-        
+  return (
+    <div>
+      <div className={styles.btnDiv} onClick={toggleModal}>
+        {buttonName}
+      </div>
 
+      {modal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={toggleModal}></div>
 
-            <div>
+          <div className={styles.modalContent}>
+            <div className={styles.modalCloseDiv} onClick={toggleModal}>
+              <span>Close</span>
+              <div className={styles.modalCloseBar}></div>
 
-            <div className={styles.btnDiv} onClick={toggleModal}>
-                    {buttonName}
-                
             </div>
 
+            {/* Eventually, we should add a pop up when the class is successfully tracked */}
+            <div className={styles.modalTrackDiv}>
+              Track
+              <div className={styles.modalTrackBar}></div>
+            </div>
 
         {modal && (
                 <div className={styles.modal}>
@@ -52,14 +61,10 @@ const Modal = ({buttonName}) => {
                     </div>
                 </div>
         )}
-
         </div>
-        
+      )}
+    </div>
+  );
+};
 
-
-        
-        
-    )
-}
-
-export default Modal 
+export default Modal;

@@ -28,8 +28,21 @@
     --background-rgb: 40, 40, 40;
     --background-selected-rgb: 100, 100, 100;
     --background-accent-rgb: 80, 80, 80;
-    --background-accent-light-rgb: 90, 90, 90;
+    --background-accent-light-rgb: 60, 60, 60;
   }
+
+}
+
+/* SIZING */
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --navbar-height: 2rem;
+  --page-padding: calc(var(--navbar-height));
 }
 
 /* SIZING */
@@ -71,18 +84,16 @@
   color: rgb(var(--foreground-accent-rgb));
   background-color: rgb(var(--background-accent-rgb));
   font-size: 0.8rem;
-
   display: flex;
-  align-items: flex-end;
   flex-direction: column;
+  align-items: center;
 }
 
-.navbarContainer {
-  height: 2rem; /* height controlled by child to fill with center alignment on column-dir flexbox */
+/* TEMP VOTE ON THIS */
+.navbarLiItem {
+  height: 100%;
   display: flex;
   flex-direction: row;
-  list-style-type: none; /* Remove bullets */
-
   align-items: center;
 }
 
