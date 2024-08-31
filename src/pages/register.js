@@ -1,4 +1,4 @@
-import styles from "@/styles/globals.css";
+import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import "@/styles/register-page.css";
 
@@ -11,11 +11,12 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
+import { AuthErrorCodes } from "firebase/auth";
 
 export default function Register(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   const router = useRouter();
 
@@ -54,6 +55,7 @@ export default function Register(props) {
           <button type="submit" className="button">
             Sign Up
           </button>
+          {error && <p>{error}</p>}
           <p>
             Already have an account?{" "}
             <Link

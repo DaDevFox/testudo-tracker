@@ -20,8 +20,8 @@ export default function Login(props) {
     e.preventDefault();
     setError("");
     signInWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        router.push("/");
       })
       .catch((error) => setError(error.message));
     setEmail("");
@@ -48,6 +48,7 @@ export default function Login(props) {
           <button type="submit" className="button">
             Log In
           </button>
+          {error && <p style={{ color: "red" }}>Invalid email or password.</p>}
           <p>
             Don&rsquo;t have an account?{" "}
             <Link
