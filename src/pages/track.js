@@ -223,15 +223,17 @@ function Course({ children, course }) {
     <div className="course">
       <div className="courseName">{course}</div>
       <table className="table">
-        <tr className="headerRow">
-          <th>Section</th>
-          <th>Availability</th>
-          <th>Open Seats</th>
-          <th>Total Seats</th>
-          <th>Instructor</th>
-          <th>Status</th>
-        </tr>
-        {children}
+        <tbody>
+          <tr className="headerRow">
+            <th>Section</th>
+            <th>Availability</th>
+            <th>Open Seats</th>
+            <th>Total Seats</th>
+            <th>Instructor</th>
+            <th>Status</th>
+          </tr>
+          {children}
+        </tbody>
       </table>
     </div>
   );
