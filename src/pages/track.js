@@ -196,15 +196,9 @@ export default function Track(props) {
   return (
     <main className="main">
       <Navbar />
-      <Course course="CMSC131">
-        <Header />
-        {CMSC131section_num}
-      </Course>
+      <Course course="CMSC131">{CMSC131section_num}</Course>
 
-      <Course course="CMSC132">
-        <Header />
-        {CMSC132section_num}
-      </Course>
+      <Course course="CMSC132">{CMSC132section_num}</Course>
     </main>
   );
 }
@@ -228,21 +222,18 @@ function Course({ children, course }) {
   return (
     <div className="course">
       <div className="courseName">{course}</div>
-      <table className="table">{children}</table>
+      <table className="table">
+        <tr className="headerRow">
+          <th>Section</th>
+          <th>Availability</th>
+          <th>Open Seats</th>
+          <th>Total Seats</th>
+          <th>Instructor</th>
+          <th>Status</th>
+        </tr>
+        {children}
+      </table>
     </div>
-  );
-}
-
-function Header() {
-  return (
-    <tr className="headerRow">
-      <th>Section</th>
-      <th>Availability</th>
-      <th>Open Seats</th>
-      <th>Total Seats</th>
-      <th>Instructor</th>
-      <th>Status</th>
-    </tr>
   );
 }
 
