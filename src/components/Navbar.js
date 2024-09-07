@@ -2,8 +2,19 @@
 import Link from "next/link";
 import styles from "@/styles/components.module.css";
 
+import { useEffect, useState } from "react";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase/config";
+
 export default function Navbar(props) {
-  const user = { loggedIn: false };
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+  }, []);
   // props.user;
 
   const renderNoLogin = () => {
@@ -27,11 +38,59 @@ export default function Navbar(props) {
       </ul>
     );
   };
-  const renderWithLogin = () => {};
+  const renderWithLogin = () => {
+    return (
+      <ul className={styles.navbarContainer}>
+        <li className={styles.navbarLiItem}>
+          <Link className={styles.navbarItem} href="/">
+            Home
+          </Link>
+        </li>
+        <li className={styles.navbarLiItem}>
+          <Link className={styles.navbarItem} href="/">
+            {currentUser?.email.split("@")[0]}
+          </Link>
+        </li>
+      </ul>
+    );
+  };
 
   return (
     <div className={styles.navbar}>
-      {user.loggedIn ? renderWithLogin() : renderNoLogin()}
+      <ul className={styles.navbarContainer}>
+        <li className={styles.navbarLiItem}>
+          <Link className={styles.navbarItem} href="/">
+            Home
+          </Link>
+        </li>
+        {currentUser == null ? (
+          <ul className={styles.navbarContainer}>
+            <li className={styles.navbarLiItem}>
+              <Link className={styles.navbarItem} href="/register">
+                Sign Up
+              </Link>
+            </li>
+            <li className={styles.navbarLiItem}>
+              <Link className={styles.navbarItem} href="/login">
+                Log In
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className={styles.navbarContainer}>
+            <li className={styles.navbarLiItem}>
+              <Link className={styles.navbarItem} href="/track">
+                Track
+              </Link>
+            </li>
+            <li className={styles.navbarLiItem}>
+              <Link className={styles.navbarItem} href="/">
+                {currentUser?.email.split("@")[0]}
+              </Link>
+            </li>
+          </ul>
+        )}
+      </ul>
     </div>
   );
 }
