@@ -12,12 +12,11 @@ export default async function handler(req, res) {
     });
 
     try {
-      await client.connect();
+      await client
+        .connect()
+        .catch((ex) => console.log(`mongodb connect failure ${ex}`));
 
-      // Choose a name for your database
       const database = client.db("testudo-index");
-
-      // Choose a name for your collection
       const collection = database.collection("section-index");
 
       await collection.insertOne(data);
@@ -37,26 +36,28 @@ export default async function handler(req, res) {
     });
 
     try {
-      console.log(req.body);
-      const { course_code, section_number } = req.body;
-      if (!course_code || !section_number) return;
+      const course_id = req.query.course_id;
+
+      if (!course_id) {
+        res.status(400);
+        return;
+      }
 
       await client.connect();
 
       const database = client.db("testudo-index");
       const collection = database.collection("section-index");
 
-      console.log("querying");
-      // constricting query to ONLY use course code and section num passed into this API
+      // constricting query to ONLY search course code and section num passed into this API
+      console.log("finding");
       var result = await collection.findOne({
-        course_code: course_code,
-        section_number: section_number,
+        course_id: course_id,
       });
 
-      if (result) {
-        console.log("result: " + result);
-        res.status(200).json(result);
-      } else res.status(404);
+      if (result == null) res.status(404).send({ result });
+
+      console.log("result: " + result);
+      res.status(200).json(result);
     } catch (error) {
       res.status(500).json({ message: `Something went wrong! ${error}` });
     } finally {

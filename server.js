@@ -21,12 +21,12 @@ app.prepare().then(async () => {
   const runScheduler = async () => {
     try {
       const response = await axios.post(
-        `https://localhost:${port}/api/services/scheduler`, // this server SHOULD always run on the same machine as the api as of rn -- maybe change in future
+        `http://localhost:${port}/api/services/scheduler`, // this server SHOULD always run on the same machine as the api as of rn -- maybe change in future
         {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
     } catch (error) {
       console.log(error);
@@ -35,10 +35,10 @@ app.prepare().then(async () => {
 
   httpServer.listen(port, () => {
     console.log(
-      `Testudo Tracker web server is running on http://localhost:${port}.\nWebscraper script is now being queried via the services/scheduler API route every minute.`,
+      `Testudo Tracker web server is running on http://localhost:${port}.\nWebscraper script is now being queried via the services/scheduler API route every minute.`
     );
 
     // TODO: uncomment when python script functionality is complete
-    // runScheduler();
+    runScheduler();
   });
 });
