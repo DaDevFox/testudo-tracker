@@ -105,7 +105,10 @@ export default async function handler(req, res) {
           ) {
             console.log(`error; response received:${result}`);
           }
+          console.log(`documents inserted; result:${result}`);
         }
+
+        //TODO: loop through sections found and remove sections in db not in api
 
         client.close();
       });
