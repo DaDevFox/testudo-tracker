@@ -2,7 +2,7 @@
 
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
-import "@/styles/register-page.css";
+import styles from "@/styles/register-page.module.css";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -59,7 +59,7 @@ export default function Register(props) {
   return (
     <main className="main">
       <Navbar />
-      <div className="register">
+      <div className={styles.register}>
         <form onSubmit={register}>
           <h1>Sign Up</h1>
           <input
@@ -74,10 +74,10 @@ export default function Register(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="button">
+          <button type="submit" className={styles.button}>
             Sign Up
           </button>
-          {error && <p className="error">{error}</p>}
+          {error && <p className={styles.error}>{error}</p>}
           <p>
             Already have an account?{" "}
             <Link

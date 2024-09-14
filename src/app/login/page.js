@@ -1,10 +1,9 @@
 "use client";
 
 import "@/styles/globals.css";
-import styles from "@/styles/page.module.css";
 
 import Navbar from "@/components/Navbar";
-import "@/styles/login-page.css";
+import styles from "@/styles/login-page.module.css";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -54,7 +53,7 @@ export default function Login(props) {
   return (
     <main className="main">
       <Navbar />
-      <div className="login">
+      <div className={styles.login}>
         <form onSubmit={login}>
           <h1>Log In</h1>
           <input
@@ -69,10 +68,10 @@ export default function Login(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="button">
+          <button type="submit" className={styles.button}>
             Log In
           </button>
-          {error && <p className="error">{error}</p>}
+          {error && <p className={styles.error}>{error}</p>}
           <p>
             Don&rsquo;t have an account?{" "}
             <Link
