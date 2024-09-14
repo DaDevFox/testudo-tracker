@@ -1,45 +1,42 @@
+"use client";
+
 import "@/styles/globals.css";
+import styles from "@/styles/page.module.css";
+
 import Navbar from "@/components/Navbar";
-import "@/styles/register-page.css";
+import "@/styles/login-page.css";
 
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/config";
-import { AuthErrorCodes } from "firebase/auth";
 
-export default function Register(props) {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
-  const register = (e) => {
+  const login = (e) => {
     e.preventDefault();
     setError("");
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        sendEmailVerification(auth.currentUser).then(() => {
-          router.push("/verify");
-        });
+        router.push("/");
       })
       .catch((error) => setError(error.message));
     setEmail("");
     setPassword("");
   };
-
   return (
     <main className="main">
       <Navbar />
-      <div className="register">
-        <form onSubmit={register}>
-          <h1>Sign Up</h1>
+      <div className="login">
+        <form onSubmit={login}>
+          <h1>Log In</h1>
           <input
             type="email"
             placeholder="Enter Email"
@@ -53,16 +50,16 @@ export default function Register(props) {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit" className="button">
-            Sign Up
+            Log In
           </button>
-          {error && <p>{error}</p>}
+          {error && <p style={{ color: "red" }}>Invalid email or password.</p>}
           <p>
-            Already have an account?{" "}
+            Don&rsquo;t have an account?{" "}
             <Link
-              href="/login"
+              href="/register"
               style={{ color: "darkblue", textDecoration: "underline" }}
             >
-              Log in
+              Register
             </Link>
           </p>
         </form>
