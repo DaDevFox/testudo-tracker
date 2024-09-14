@@ -109,10 +109,7 @@
   height: fit-content;
   color: #000;
   background-color: #fefefe;
-  transition:
-    margin 0.1s,
-    color 0s,
-    height 1s;
+  transition: margin 0.1s, color 0s, height 1s;
 }
 
 .searchResultDummy {
@@ -121,6 +118,7 @@
   font-weight: lighter;
   font-style: italic;
   visibility: hidden;
+
 }
 
 .searchResult_normal:hover {
@@ -186,7 +184,8 @@ body.activeModal {
   font-size: 1.2rem;
 }
 
-.modal, .overlay {
+.modal,
+.overlay {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -197,7 +196,7 @@ body.activeModal {
 }
 
 .overlay {
-  background: rgba(49,49,49,0.8);
+  background: rgba(49, 49, 49, 0.8);
 }
 .modalContent {
   position: absolute;
@@ -215,7 +214,6 @@ body.activeModal {
   font-size: 23px;
   font-weight: normal;
 }
-
 
 .modalCloseDiv {
   position: absolute;
@@ -236,7 +234,7 @@ body.activeModal {
 }
 
 .modalCloseDiv span:after {
-  content: '\274c';
+  content: "\274c";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -255,13 +253,12 @@ body.activeModal {
 
 .modalCloseBar {
   position: absolute;
-  width: 3.0rem;
+  width: 3rem;
   height: 0.3rem;
   margin-top: -0.1px;
   background-color: var(--maryland-red);
   transition: 0.75s ease-out;
 }
-
 
 /* I would like to change the font of the track button...but idk to what...*/
 .modalTrackDiv {
@@ -272,7 +269,7 @@ body.activeModal {
   font-family: var(--font-mono);
   font-size: 1.8rem;
   cursor: pointer;
-  width: 5.rem;
+  width: 5rem;
   text-align: center;
 
   background: #f1f1f1;
@@ -296,10 +293,7 @@ body.activeModal {
   margin-top: -4px;
 }
 
-
 .modalInfo {
   margin-top: 1.5%;
   font-size: 22px;
 }
-
-

@@ -1,6 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# IGNORE SECRETS VERY IMPORTANT
+# security
 src/secrets.txt
 
 # dependencies
