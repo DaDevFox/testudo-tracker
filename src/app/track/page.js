@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/styles/track-page.css";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
