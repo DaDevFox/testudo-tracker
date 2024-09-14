@@ -27,7 +27,27 @@ export default function Login(props) {
       .then(() => {
         router.push("/");
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        switch (error.code) {
+          case "auth/invalid-email":
+            setError("Invalid email.");
+            break;
+          case "auth/email-already-in-use":
+            setError("Email already in use.");
+            break;
+          case "auth/invalid-credential":
+            setError("Incorrect email or password");
+            break;
+          case "auth/missing-email":
+            setError("Enter an email");
+            break;
+          case "auth/missing-password":
+            setError("Enter a password");
+            break;
+          default:
+            setError(error.message);
+        }
+      });
     setEmail("");
     setPassword("");
   };
@@ -52,7 +72,7 @@ export default function Login(props) {
           <button type="submit" className="button">
             Log In
           </button>
-          {error && <p style={{ color: "red" }}>Invalid email or password.</p>}
+          {error && <p className="error">{error}</p>}
           <p>
             Don&rsquo;t have an account?{" "}
             <Link

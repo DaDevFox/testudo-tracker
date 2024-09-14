@@ -31,7 +31,27 @@ export default function Register(props) {
           router.push("/verify");
         });
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            setError("Email already in use.");
+            break;
+          case "auth/invalid-credential":
+            setError("Incorrect email or password.");
+            break;
+          case "auth/invalid-email":
+            setError("Invalid email.");
+            break;
+          case "auth/missing-email":
+            setError("Enter an email to register.");
+            break;
+          case "auth/missing-password":
+            setError("Enter a password to register.");
+            break;
+          default:
+            setError(error.message);
+        }
+      });
     setEmail("");
     setPassword("");
   };
@@ -57,7 +77,7 @@ export default function Register(props) {
           <button type="submit" className="button">
             Sign Up
           </button>
-          {error && <p>{error}</p>}
+          {error && <p className="error">{error}</p>}
           <p>
             Already have an account?{" "}
             <Link
