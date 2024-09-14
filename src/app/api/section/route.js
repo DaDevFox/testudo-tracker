@@ -1,26 +1,45 @@
+import { HttpStatusCode } from "axios";
 import { MongoClient } from "mongodb";
 
 export async function POST(request) {
-  const { data } = request.body;
-
   const client = new MongoClient(process.env.MONGODB_URI, {});
 
-  try {
-    await client
-      .connect()
-      .catch((ex) => console.log(`mongodb connect failure ${ex}`));
+  return await request.text().then(async (data) => {
+    try {
+      await client
+        .connect()
+        .catch((ex) => console.log(`mongodb connect failure ${ex}`));
 
-    const database = client.db("testudo-index");
-    const collection = database.collection("section-index");
+      const database = client.db("testudo-index");
+      const collection = database.collection("section-index");
 
-    await collection.insertOne(data);
+      const bodyJson = JSON.parse(data);
+      console.log(bodyJson);
 
-    return new Response("Data saved successfully!", { status: 201 });
-  } catch (error) {
-    return new Response(`Something went wrong: ${error}`, { status: 500 });
-  } finally {
-    await client.close();
-  }
+      if (!(bodyJson?.course_id && bodyJson?.professor))
+        return new Response(
+          "incorrect input format; body must be json and have course_id and professor fields with string values",
+          {
+            status: HttpStatusCode.BadRequest,
+          }
+        );
+
+      const result = await collection.insertOne({
+        course_id: data.course_id,
+      });
+
+      return new Response(
+        `Data saved successfully! Inserted document id: ${result.insertedId}`,
+        { status: HttpStatusCode.Accepted }
+      );
+    } catch (error) {
+      return new Response(`Something went wrong: ${error}`, {
+        status: HttpStatusCode.InternalServerError,
+      });
+    } finally {
+      await client.close();
+    }
+  });
 }
 
 export async function GET(request) {
@@ -35,7 +54,7 @@ export async function GET(request) {
       return new Response(
         "Request must have course_id param with string body",
         {
-          status: 400,
+          status: HttpStatusCode.BadRequest,
         }
       );
     }
@@ -53,15 +72,17 @@ export async function GET(request) {
 
     if (result == null)
       return new Response("No matches", {
-        status: 400,
+        status: HttpStatusCode.NotFound,
       });
 
     console.log(result);
     return new Response(JSON.stringify(result), {
-      status: 200,
+      status: HttpStatusCode.Accepted,
     });
   } catch (error) {
-    return new Response(`Something went wrong! ${error}`, { status: 500 });
+    return new Response(`Something went wrong! ${error}`, {
+      status: HttpStatusCode.InternalServerError,
+    });
   } finally {
     await client.close();
   }
