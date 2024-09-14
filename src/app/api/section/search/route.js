@@ -4,6 +4,8 @@ import { MongoClient } from "mongodb";
 const SearchResultsMax = 100;
 
 export async function GET(request) {
+  if (!process.env.MONGODB_URI)
+    return new Response("", { status: HttpStatusCode.ServiceUnavailable });
   const client = new MongoClient(process.env.MONGODB_URI, {});
   // performs a search with Atlas autocomplete query
   try {
