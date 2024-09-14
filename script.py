@@ -9,27 +9,48 @@ from apscheduler.triggers.combining import OrTrigger
 from apscheduler.triggers.cron import CronTrigger
 import datetime
 
+# importing os module for environment variables
+import os
+import pymongo
+# importing necessary functions from dotenv library
+from dotenv import load_dotenv, dotenv_values 
+import smtplib
+# loading variables from .env file
+load_dotenv() 
+
 # Set the email accounts from which to send and receive the notification email
-YOUR_GOOGLE_EMAIL = 'srb.donotreply@gmail.com'  
-YOUR_GOOGLE_EMAIL_APP_PASSWORD = 'lbmwjaihlymvkuhq'  
-YOUR_RECIPIENT_EMAIL = 'emailshivank@gmail.com'
+YOUR_GOOGLE_EMAIL = 'testudo.tracker.donotreply@gmail.com'  
+YOUR_GOOGLE_EMAIL_APP_PASSWORD = 'zvtmfwzozfkmnqkq'  
 
 
-# Pick which courses, professors, and sections you want to monitor by following the format
-# "Course Name": {"Professor Name" : ("Section Number(s)")}
-courses_and_profs_plus_sections = {
-    "CMSC351": {"Justin Wyss-Gallifent" : ("0101"), "Herve Franceschi" : ("0401"), "Clyde Kruskal" : ("0301")},
-}
+client = pymongo.MongoClient(os.getenv("DATABASE_LINK"))
+db = client["testudo-index"]
+collection = db["user-watches"]
+
+
+master_dict = dict()
+
+for d in collection.find():
+    ind = d["course_id"].index("-")
+    master_dict[d["course_id"]] = [d["course_id"][0:ind], d["course_id"][ind+1:], d["professor"], d["emails"]]
+
+
+
+
+
 
 # The main function which will run every time the schedule of classes is updated
 def script_main():
        
     
     # Loop through all the courses
-    for course_name in courses_and_profs_plus_sections.keys():
-        
+    for course_and_section in master_dict.keys():
+        course_id = master_dict[course_and_section][0]
+        section_id = master_dict[course_and_section][1]
+        professor = master_dict[course_and_section][2]
+        emails = master_dict[course_and_section][3]
         # Go the the website and make a request
-        temp_site_url = "https://app.testudo.umd.edu/soc/search?courseId="+course_name+"&sectionId=&termId=202408&_openSectionsOnly=on&creditCompare=&credits=&courseLevelFilter=ALL&instructor=&_facetoface=on&_blended=on&_online=on&courseStartCompare=&courseStartHour=&courseStartMin=&courseStartAM=&courseEndHour=&courseEndMin=&courseEndAM=&teachingCenter=ALL&_classDay1=on&_classDay2=on&_classDay3=on&_classDay4=on&_classDay5=on"
+        temp_site_url = "https://app.testudo.umd.edu/soc/search?courseId="+course_id+"&sectionId=&termId=202408&_openSectionsOnly=on&creditCompare=&credits=&courseLevelFilter=ALL&instructor=&_facetoface=on&_blended=on&_online=on&courseStartCompare=&courseStartHour=&courseStartMin=&courseStartAM=&courseEndHour=&courseEndMin=&courseEndAM=&teachingCenter=ALL&_classDay1=on&_classDay2=on&_classDay3=on&_classDay4=on&_classDay5=on"
         r = requests.get(temp_site_url)
 
         # Parse the HTML and find all of the professors and sections
@@ -44,23 +65,25 @@ def script_main():
             section = section.encode('ascii', errors='ignore')
             section = str(section)
             section = str( ''.join(filter(str.isdigit, section) ) )
+            section = section
             
             # If the one on testudo matches something we are looking for, and the number of seats is 
             # greater than 0, send an email
-            if str(prof.text) in courses_and_profs_plus_sections[course_name].keys() and section in courses_and_profs_plus_sections[course_name][str(prof.text)]:
+            if str(prof.text) == professor and section == section_id:
                 print(prof.text)
                 print(section)
                 open_seats = row.find('span', attrs = {'class': 'open-seats-count'})
                 if int(open_seats.text) > 0:
                     
-                    smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                    smtpserver.ehlo()
-                    smtpserver.login(YOUR_GOOGLE_EMAIL, YOUR_GOOGLE_EMAIL_APP_PASSWORD)                
-                    sent_from = YOUR_GOOGLE_EMAIL
-                    sent_to = YOUR_RECIPIENT_EMAIL  
-                    email_text = str(prof.text) + " has " + str(open_seats.text) + " open seats in " + course_name + " in section " + section
-                    smtpserver.sendmail(sent_from, sent_to, email_text)
-                    smtpserver.close()                
+                    for recipient_email in emails:
+                        smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                        smtpserver.ehlo()
+                        smtpserver.login(YOUR_GOOGLE_EMAIL, YOUR_GOOGLE_EMAIL_APP_PASSWORD)                
+                        sent_from = YOUR_GOOGLE_EMAIL
+                        sent_to = recipient_email  
+                        email_text = str(prof.text) + " has " + str(open_seats.text) + " open seats in " + course_id + " in section " + section
+                        smtpserver.sendmail(sent_from, sent_to, email_text)
+                        smtpserver.close()                
 
 
 # Create and run the scheduler to run the function every time testudo updates
@@ -76,6 +99,7 @@ sched.add_job(script_main, trigger)
 
 print("The scheduler has added the job")
 sched.start()
+
 
 
 

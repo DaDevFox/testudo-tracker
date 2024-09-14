@@ -91,7 +91,7 @@ const Search = () => {
       times: "MWF 0800-0930",
     },
   ];
-
+  
   // State for the search term in the search bar
   const [query, setQuery] = useState("");
 
