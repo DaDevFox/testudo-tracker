@@ -1,17 +1,26 @@
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import "@/styles/verify-page.css";
-import { useUserValue } from "@/utils/UserProvider";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { auth } from "@/firebase/config";
+
 export default function Verify() {
-  const currentUser = useUserValue();
+  const [currentUser, setCurrentUser] = useState(null);
   const [time, setTime] = useState(60);
   const [timeActive, setTimeActive] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setTimeActive(true);
+    });
+  }, []);
 
   useEffect(() => {
     let interval = null;
