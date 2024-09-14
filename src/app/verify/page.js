@@ -1,7 +1,6 @@
 "use client";
 
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
 import styles from "@/styles/verify-page.module.css";
 
 import { useEffect, useState } from "react";
@@ -64,31 +63,28 @@ export default function Verify() {
       });
   };
   return (
-    <main className="main">
-      <Navbar />
-      <div className={styles.verify}>
-        <div>
-          <h2>Verify your email</h2>
+    <div className={styles.verify}>
+      <div>
+        <h2>Verify your email</h2>
+        <p>
+          <strong>An email has been sent to:</strong>
+          <br />
+          <span>{currentUser?.email}</span>
+        </p>
+        <p>
+          Follow the instructions in the email and click on the link to verify
+          your account.
+        </p>
+        {timeActive ? (
           <p>
-            <strong>An email has been sent to:</strong>
-            <br />
-            <span>{currentUser?.email}</span>
+            <strong>Email sent. Try again in {time} seconds.</strong>
           </p>
-          <p>
-            Follow the instructions in the email and click on the link to verify
-            your account.
-          </p>
-          {timeActive ? (
-            <p>
-              <strong>Email sent. Try again in {time} seconds.</strong>
-            </p>
-          ) : (
-            <button onClick={resendEmailVerification} className={styles.button}>
-              Resend Email
-            </button>
-          )}
-        </div>
+        ) : (
+          <button onClick={resendEmailVerification} className={styles.button}>
+            Resend Email
+          </button>
+        )}
       </div>
-    </main>
+    </div>
   );
 }

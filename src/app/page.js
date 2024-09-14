@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import "@/styles/globals.css";
-import styles from "@/styles/page.module.css";
+import styles from "@/styles/components.module.css";
 import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
-import Navbar from "@/components/Navbar";
 import { useState, useEffect, useRef } from "react";
 import WebsiteTitle from "@/components/WebsiteTitle";
 import { useApp } from "@/components/useApp";
@@ -94,13 +93,12 @@ export default function Home() {
   const [query, setQuery] = useState("");
 
   return (
-    <main className="main">
-      <Navbar />
+    <div>
       <WebsiteTitle />
       <div className={styles.searchContainer}>
         <SearchBar onChange={(e) => setQuery(e.target.value)} />
         <SearchResults query={query} sections={sections} />
       </div>
-    </main>
+    </div>
   );
 }

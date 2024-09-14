@@ -6,7 +6,6 @@ import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
 import Navbar from "@/components/Navbar";
 
-import "@/styles/page.module.css";
 import component_styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import styles from "@/styles/search-page.module.css";

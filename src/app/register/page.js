@@ -1,7 +1,6 @@
 "use client";
 
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
 import styles from "@/styles/AuthBox.module.css";
 
 import { useState } from "react";
@@ -16,7 +15,7 @@ import AuthBox from "@/components/AuthBox";
 import { auth } from "@/firebase/config";
 import { AuthErrorCodes } from "firebase/auth";
 
-export default function Register(props) {
+export default function Register() {
   const router = useRouter();
   const [error, setError] = useState("");
 
@@ -51,25 +50,22 @@ export default function Register(props) {
   };
 
   return (
-    <main className="main">
-      <Navbar />
-      <AuthBox
-        title="Sign Up"
-        submitText="Sign Up"
-        allowUsername={false}
-        onSubmit={register}
-      >
-        {error && <p className={styles.error}>{error}</p>}
-        <p>
-          Already have an account?{" "}
-          <Link
-            href="/login"
-            style={{ color: "darkblue", textDecoration: "underline" }}
-          >
-            Log in
-          </Link>
-        </p>
-      </AuthBox>
-    </main>
+    <AuthBox
+      title="Sign Up"
+      submitText="Sign Up"
+      allowUsername={false}
+      onSubmit={register}
+    >
+      {error && <p className={styles.error}>{error}</p>}
+      <p>
+        Already have an account?{" "}
+        <Link
+          href="/login"
+          style={{ color: "darkblue", textDecoration: "underline" }}
+        >
+          Log in
+        </Link>
+      </p>
+    </AuthBox>
   );
 }

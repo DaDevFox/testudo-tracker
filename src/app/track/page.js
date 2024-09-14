@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "@/styles/track-page.module.css";
-import Navbar from "@/components/Navbar";
 import { useState } from "react";
 import "@/styles/globals.css";
 
@@ -196,12 +195,11 @@ export default function Track(props) {
   ));
 
   return (
-    <main className="main">
-      <Navbar />
+    <div>
       <Course course="CMSC131">{CMSC131section_num}</Course>
 
       <Course course="CMSC132">{CMSC132section_num}</Course>
-    </main>
+    </div>
   );
 }
 
