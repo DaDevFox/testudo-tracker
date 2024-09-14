@@ -1,3 +1,8 @@
+/* EXTERNAL ELEMENTS */
+.subNavbar{
+  margin-top: var(--navbar-height);
+}
+
 /* NAVBAR */
 .navbar {
   height: var(
@@ -29,7 +34,6 @@
   align-items: center;
 }
 
-/* TEMP VOTE ON THIS */
 .navbarLiItem {
   height: 100%;
   display: flex;

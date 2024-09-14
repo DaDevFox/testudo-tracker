@@ -13,7 +13,7 @@ import AuthBox from "@/components/AuthBox";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/config";
 
-export default function Login(props) {
+export default function Login() {
   const [error, setError] = useState("");
 
   const router = useRouter();
@@ -47,25 +47,22 @@ export default function Login(props) {
       });
   };
   return (
-    <main className="main">
-      <Navbar />
-      <AuthBox
-        title="Log In"
-        submitText="Log In"
-        allowUsername={false}
-        onSubmit={login}
-      >
-        {error && <p className={styles.error}>{error}</p>}
-        <p>
-          Don&rsquo;t have an account?{" "}
-          <Link
-            href="/register"
-            style={{ color: "darkblue", textDecoration: "underline" }}
-          >
-            Register
-          </Link>
-        </p>
-      </AuthBox>
-    </main>
+    <AuthBox
+      title="Log In"
+      submitText="Log In"
+      allowUsername={false}
+      onSubmit={login}
+    >
+      {error && <p className={styles.error}>{error}</p>}
+      <p>
+        Don&rsquo;t have an account?{" "}
+        <Link
+          href="/register"
+          style={{ color: "darkblue", textDecoration: "underline" }}
+        >
+          Register
+        </Link>
+      </p>
+    </AuthBox>
   );
 }
