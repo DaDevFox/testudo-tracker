@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import "@/styles/page.module.css";
 import styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import "@/styles/search-page.module.css";
