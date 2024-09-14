@@ -2,7 +2,7 @@
 
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
-import styles from "@/styles/register-page.module.css";
+import styles from "@/styles/AuthBox.module.css";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -12,18 +12,14 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
+import AuthBox from "@/components/AuthBox";
 import { auth } from "@/firebase/config";
 
 export default function Register(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-
   const router = useRouter();
+  const [error, setError] = useState("");
 
-  const register = (e) => {
-    e.preventDefault();
-    setError("");
+  const register = (auth, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         sendEmailVerification(auth.currentUser).then(() => {
@@ -51,43 +47,28 @@ export default function Register(props) {
             setError(error.message);
         }
       });
-    setEmail("");
-    setPassword("");
   };
 
   return (
     <main className="main">
       <Navbar />
-      <div className={styles.register}>
-        <form onSubmit={register}>
-          <h1>Sign Up</h1>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit" className={styles.button}>
-            Sign Up
-          </button>
-          {error && <p className={styles.error}>{error}</p>}
-          <p>
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              style={{ color: "darkblue", textDecoration: "underline" }}
-            >
-              Log in
-            </Link>
-          </p>
-        </form>
-      </div>
+      <AuthBox
+        title="Sign Up"
+        submitText="Sign Up"
+        allowUsername={false}
+        onSubmit={register}
+      >
+        {error && <p className={styles.error}>{error}</p>}
+        <p>
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            style={{ color: "darkblue", textDecoration: "underline" }}
+          >
+            Log in
+          </Link>
+        </p>
+      </AuthBox>
     </main>
   );
 }
