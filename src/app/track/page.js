@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/styles/track-page.css";
+import styles from "@/styles/track-page.module.css";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
 import "@/styles/globals.css";
@@ -207,10 +207,10 @@ export default function Track(props) {
 
 function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
   return (
-    <tr className="row">
+    <tr className={styles.row}>
       <td>{sectionNum}</td>
       <td>
-        <progress value={seatsAval} className="progressBar" />
+        <progress value={seatsAval} className={styles.progressBar} />
       </td>
       <td>{seatsOpen}</td>
       <td>{seats}</td>
@@ -222,11 +222,11 @@ function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
 
 function Course({ children, course }) {
   return (
-    <div className="course">
-      <div className="courseName">{course}</div>
-      <table className="table">
+    <div className={styles.course}>
+      <div className={styles.courseName}>{course}</div>
+      <table className={styles.table}>
         <tbody>
-          <tr className="headerRow">
+          <tr className={styles.headerRow}>
             <th>Section</th>
             <th>Availability</th>
             <th>Open Seats</th>
