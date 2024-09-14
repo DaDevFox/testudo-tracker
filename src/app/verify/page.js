@@ -2,7 +2,7 @@
 
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
-import "@/styles/verify-page.css";
+import styles from "@/styles/verify-page.module.css";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -66,7 +66,7 @@ export default function Verify() {
   return (
     <main className="main">
       <Navbar />
-      <div className="verify">
+      <div className={styles.verify}>
         <div>
           <h2>Verify your email</h2>
           <p>
@@ -83,7 +83,7 @@ export default function Verify() {
               <strong>Email sent. Try again in {time} seconds.</strong>
             </p>
           ) : (
-            <button onClick={resendEmailVerification} className="button">
+            <button onClick={resendEmailVerification} className={styles.button}>
               Resend Email
             </button>
           )}
