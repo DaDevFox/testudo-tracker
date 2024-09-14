@@ -26,7 +26,6 @@
   border-radius: 3px;
   padding: 3rem;
   width: 26rem;
-  text-wrap: nowrap;
 
   gap: 1rem;
 }
@@ -55,4 +54,8 @@
 
 .button:hover {
   background-color: #ef5a6e;
+}
+
+.error {
+  color: var(--maryland-red);
 }
