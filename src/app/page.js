@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import "@/styles/globals.css";
 import styles from "@/styles/page.module.css";
@@ -7,8 +8,7 @@ import SearchResults from "@/components/SearchResults";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect, useRef } from "react";
 import WebsiteTitle from "@/components/WebsiteTitle";
-// import { useApp } from "@/components/useApp";
-
+import { useApp } from "@/components/useApp";
 const sections = [
   {
     link: "https://google.com",
@@ -92,16 +92,6 @@ const sections = [
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  // const app = useApp();
-  //
-  // // authenticate DB access user
-  // useEffect(() => {
-  //   // If no logged in user, log in
-  //   if (app && !app.currentUser) {
-  //     const anonymousUser = Realm.Credentials.anonymous();
-  //     app.logIn(anonymousUser);
-  //   }
-  // }, [app, app?.currentUser]);
 
   return (
     <main className="main">
