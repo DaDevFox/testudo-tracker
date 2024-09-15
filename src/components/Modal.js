@@ -29,10 +29,10 @@ const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
             </div>
 
             {/* Eventually, we should add a pop up when the class is successfully tracked */}
-            <div className={styles.modalTrackDiv}>
+            <button className={styles.modalTrackDiv}>
               Track
               <div className={styles.modalTrackBar}></div>
-            </div>
+            </button>
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
             <p className={styles.modalInfo}>{buttonName}</p>
