@@ -15,6 +15,7 @@
   --background-selected-rgb: 225, 225, 225;
   --background-accent-rgb: 255, 255, 255;
   --background-accent-light-rgb: 240, 240, 240;
+  --background-accent-light-selected-rgb: 248, 248, 248;
 
   --maryland-emphasis-background: var(--maryland-red);
   --maryland-emphasis-foreground: #eee;

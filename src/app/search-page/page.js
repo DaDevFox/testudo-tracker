@@ -94,13 +94,6 @@ const Search = () => {
     },
   ];
 
-  // State for the search term in the search bar
-  const [query, setQuery] = useState("");
-
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
   return (
     <main className="main">
       <Navbar />
@@ -116,7 +109,15 @@ const Search = () => {
 
       <div className={styles.search_div}>
         {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
-        <MongoSearch />
+        <MongoSearch
+          searchBarStyle={{ borderRadius: "0rem", width: "100%" }}
+          searchResultsStyle={{
+            marginTop: "0rem",
+            width: "100%",
+            borderRadius: "0rem",
+            transition: "none",
+          }}
+        />
       </div>
     </main>
   );

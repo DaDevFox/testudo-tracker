@@ -8,7 +8,7 @@ import SearchResults from "./SearchResults";
 
 import { searchSections } from "@/app/searchSections";
 
-export default function MongoSearch() {
+export default function MongoSearch({ searchBarStyle, searchResultsStyle }) {
   const [query, setQuery] = useState("");
   const [sections, setSections] = useState([]);
 
@@ -29,8 +29,12 @@ export default function MongoSearch() {
 
   return (
     <div className={styles.searchContainer}>
-      <SearchBar onChange={onSearchQueryChange}></SearchBar>
+      <SearchBar
+        style={searchBarStyle}
+        onChange={onSearchQueryChange}
+      ></SearchBar>
       <SearchResults
+        style={searchResultsStyle}
         query={query}
         sections={sections}
         runInternalSearch={false}
