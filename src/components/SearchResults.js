@@ -58,6 +58,7 @@ function generateItems(query, sections) {
           buttonName={
             item.course_id.split("-")[0] + " " + item.course_id.split("-")[1]
           }
+          professor={item.professor}
         />
       </div>
     );
