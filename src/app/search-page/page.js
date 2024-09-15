@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import component_styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import styles from "@/styles/search-page.module.css";
+import MongoSearch from "@/components/MongoSearch";
 
 const Search = () => {
   // Temp data
@@ -114,11 +115,8 @@ const Search = () => {
       </div>
 
       <div className={styles.search_div}>
-        <div className={component_styles.searchContainer}>
-          {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
-          <SearchBar onChange={(e) => setQuery(e.target.value)} />
-          <SearchResults query={query} sections={sections} />
-        </div>
+        {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
+        <MongoSearch />
       </div>
     </main>
   );
