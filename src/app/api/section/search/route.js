@@ -25,8 +25,7 @@ export async function GET(request) {
         "Requires query_string search parameter with string value"
       );
 
-    console.log(query_string);
-    query_limit = query_limit || 10;
+    query_limit = query_limit || 5;
     query_limit = Math.min(query_limit, SearchResultsMax);
 
     // define pipeline
@@ -55,7 +54,7 @@ export async function GET(request) {
 
     // send results
     return new Response(JSON.stringify(resultJson), {
-      status: HttpStatusCode.Found,
+      status: HttpStatusCode.Ok,
     });
   } catch (error) {
     console.log(error);

@@ -8,6 +8,7 @@ import SearchResults from "@/components/SearchResults";
 import { useState, useEffect, useRef } from "react";
 import WebsiteTitle from "@/components/WebsiteTitle";
 import { useApp } from "@/components/useApp";
+import MongoSearch from "@/components/MongoSearch";
 const sections = [
   {
     link: "https://google.com",
@@ -95,10 +96,7 @@ export default function Home() {
   return (
     <div>
       <WebsiteTitle />
-      <div className={styles.searchContainer}>
-        <SearchBar onChange={(e) => setQuery(e.target.value)} />
-        <SearchResults query={query} sections={sections} />
-      </div>
+      <MongoSearch />
     </div>
   );
 }
