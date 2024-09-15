@@ -4,7 +4,7 @@ import styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import "@/styles/search-page.module.css";
 
-const Modal = ({ buttonName }) => {
+const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
   // The modal starts off as hidden
   const [modal, setModal] = useState(false);
 
@@ -36,7 +36,7 @@ const Modal = ({ buttonName }) => {
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
             <p className={styles.modalInfo}>{buttonName}</p>
-            <p className={styles.modalInfo}>Proffessor: Lebron James</p>
+            <p className={styles.modalInfo}>Proffessor: {professor}</p>
             <p className={styles.modalInfo}>Timings: MWF 2:30-3:15 PM</p>
             <p className={styles.modalInfo}>Open Seats: 0, Waitlist: 0</p>
           </div>
