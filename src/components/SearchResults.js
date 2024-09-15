@@ -4,7 +4,12 @@ import styles from "@/styles/components.module.css";
 
 import Modal from "@/components/Modal";
 
-export default function SearchResults({ query, sections, runInternalSearch }) {
+export default function SearchResults({
+  query,
+  sections,
+  runInternalSearch,
+  ...props
+}) {
   if (query == null || query == "")
     return (
       <div className={styles.searchResultDummy}>Type text to view results</div>
@@ -15,7 +20,7 @@ export default function SearchResults({ query, sections, runInternalSearch }) {
     : sections;
 
   return (
-    <div className={styles.searchResults}>
+    <div className={styles.searchResults} {...props}>
       {sections &&
         sections.length > 0 &&
         generateItems(query, sectionShortlist)}
