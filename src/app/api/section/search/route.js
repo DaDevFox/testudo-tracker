@@ -6,7 +6,10 @@ const SearchResultsMax = 100;
 export async function GET(request) {
   if (!process.env.MONGODB_URI)
     return new Response("", { status: HttpStatusCode.ServiceUnavailable });
+
   const client = new MongoClient(process.env.MONGODB_URI, {});
+  var resultJson = [];
+
   // performs a search with Atlas autocomplete query
   try {
     await client
@@ -25,6 +28,7 @@ export async function GET(request) {
         "Requires query_string search parameter with string value"
       );
 
+    console.log(query_string);
     query_limit = query_limit || 5;
     query_limit = Math.min(query_limit, SearchResultsMax);
 
@@ -46,19 +50,17 @@ export async function GET(request) {
 
     // run pipeline
     const result = await coll.aggregate(agg);
-    var resultJson = [];
 
     await result.forEach((document) => {
       resultJson.push(document);
-    });
-
-    // send results
-    return new Response(JSON.stringify(resultJson), {
-      status: HttpStatusCode.Ok,
     });
   } catch (error) {
     console.log(error);
   } finally {
     await client.close();
+    // send results
+    return new Response(JSON.stringify(resultJson), {
+      status: HttpStatusCode.Ok,
+    });
   }
 }
