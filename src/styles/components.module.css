@@ -1,3 +1,8 @@
+/* EXTERNAL ELEMENTS */
+.subNavbar{
+  margin-top: var(--navbar-height);
+}
+
 /* NAVBAR */
 .navbar {
   height: var(
@@ -29,7 +34,6 @@
   align-items: center;
 }
 
-/* TEMP VOTE ON THIS */
 .navbarLiItem {
   height: 100%;
   display: flex;
@@ -79,10 +83,14 @@
 /* SEARCHBAR */
 .searchContainer {
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .searchBar:hover {
   border-style: none;
+  background-color: rgb(var(--background-accent-light-selected-rgb));
 }
 
 .searchBar:focus {
@@ -91,7 +99,7 @@
 }
 
 .searchBar {
-  width: 41rem;
+  width: 30rem;
   margin: 0px;
   padding: 1rem;
   color: #000;
@@ -105,7 +113,7 @@
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem 0rem 1rem 0rem;
-  width: 20rem;
+  width: 30rem;
   height: fit-content;
   color: #000;
   background-color: #fefefe;
@@ -131,7 +139,6 @@
 
 .searchResult_normal {
   padding: 0.6rem;
-  padding-left: 0;
   background-color: #fefefe;
   font-family: var(--font-mono);
   /*margin: 0.1rem;*/
@@ -144,7 +151,6 @@
 
 .searchResult_close {
   padding: 0.6rem;
-  padding-left: 0;
   background-color: #fefefe;
   /*margin: 0.1rem;*/
   border-radius: 0.1rem;

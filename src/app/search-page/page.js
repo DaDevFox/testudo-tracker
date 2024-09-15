@@ -1,13 +1,15 @@
+"use client";
+
 import { useState } from "react";
 
 import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
 import Navbar from "@/components/Navbar";
 
-import "@/styles/page.module.css";
 import component_styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import styles from "@/styles/search-page.module.css";
+import MongoSearch from "@/components/MongoSearch";
 
 const Search = () => {
   // Temp data
@@ -91,13 +93,6 @@ const Search = () => {
       times: "MWF 0800-0930",
     },
   ];
-  
-  // State for the search term in the search bar
-  const [query, setQuery] = useState("");
-
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
 
   return (
     <main className="main">
@@ -113,11 +108,16 @@ const Search = () => {
       </div>
 
       <div className={styles.search_div}>
-        <div className={component_styles.searchContainer}>
-          {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
-          <SearchBar onChange={(e) => setQuery(e.target.value)} />
-          <SearchResults query={query} sections={sections} />
-        </div>
+        {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
+        <MongoSearch
+          searchBarStyle={{ borderRadius: "0rem", width: "100%" }}
+          searchResultsStyle={{
+            marginTop: "0rem",
+            width: "100%",
+            borderRadius: "0rem",
+            transition: "none",
+          }}
+        />
       </div>
     </main>
   );
