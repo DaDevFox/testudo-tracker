@@ -32,12 +32,14 @@ export async function GET(request) {
     query_limit = query_limit || 5;
     query_limit = Math.min(query_limit, SearchResultsMax);
 
-    const new_query_match = str.match(
-      "([A-Z]{4})([0-9]{3})([- ]?)([FCH0-9]{4}[A-Z0-9]?)?"
+    const new_query_match = query_string.match(
+      "([A-Z]{4})([0-9]?[0-9]?[0-9]?)([- ]?)([FCH0-9]{4}[A-Z0-9]?)?"
     );
     var new_query = "";
-    if (!new_query_match[2])
-      new_query = `${new_query_match[0]}${new_query_match[1]}`;
+    // if (!new_query_match[2])
+    console.log(new_query_match);
+    new_query = `${new_query_match[1]}${new_query_match[2]}`;
+    console.log(`new query: ${new_query}`);
     // TODO: fix later with mongo regex search
     // else
     //   new_query = `${new_query_match[0]}${new_query_match[1]}-${new_query_match[2]}}`;
