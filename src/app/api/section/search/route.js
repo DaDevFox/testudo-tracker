@@ -40,7 +40,7 @@ export async function GET(request) {
           autocomplete: {
             query: query_string,
             path: "course_id",
-            fuzzy: { maxEdits: 2, prefixLength: 0, maxExpansions: 50 },
+            fuzzy: { maxEdits: 1, prefixLength: 0, maxExpansions: 50 },
           },
         },
       },
