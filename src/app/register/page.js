@@ -12,7 +12,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 
-import { createUser } from "@/app/createUser";
+import { addUser } from "@/app/createUser";
 
 import AuthBox from "@/components/AuthBox";
 import { auth } from "@/firebase/config";
@@ -28,7 +28,7 @@ export default function Register() {
         sendEmailVerification(auth.currentUser).then(() => {
           router.push("/verify");
         });
-        createUser(email);
+        addUser(email);
       })
       .catch((error) => {
         switch (error.code) {
