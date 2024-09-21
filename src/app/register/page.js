@@ -13,7 +13,6 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
-import { AuthErrorCodes } from "firebase/auth";
 
 export default function Register(props) {
   const [email, setEmail] = useState("");
