@@ -1,11 +1,11 @@
 .course {
-  width: 90%;
   padding: 3rem;
   background-color: rgb(var(--background-accent-light-rgb));
 }
 
 .courseName {
   padding-bottom: 1rem;
+  font-size: x-large;
 }
 
 .table {
@@ -14,7 +14,7 @@
 }
 
 .row {
-  background-color: #aaa;
+  background-color: #d3d3d3;
   text-align: center;
   text-wrap: nowrap;
 }
@@ -22,11 +22,11 @@
 .row td {
   /* border: 2px solid black; */
   padding: 1rem 3rem;
-  font-size: smaller;
+  font-size: large;
 }
 
 .headerRow {
-  background-color: #aaa;
+  background-color: #d3d3d3;
   font-weight: 900;
   text-wrap: nowrap;
 }
@@ -34,12 +34,13 @@
 .headerRow th {
   /* border: 2px solid black; */
   padding: 1rem 3rem;
+  font-size: larger;
 }
 
 .progressBar {
   -webkit-appearance: none;
   border-radius: 10px;
-  height: 0.5rem;
+  height: 0.75rem;
   padding-bottom: 0.25rem;
 }
 
@@ -49,32 +50,65 @@
 }
 
 .progressBar::-webkit-progress-bar {
-  background-color: #777777;
+  background-color: #9a9a9a;
   border-radius: 10px;
 }
 
-/* .button {
-  padding: 10px 24px;
-  background-color: white;
-  width: 8.5rem;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: black;
-}
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .course {
+    padding: 3rem;
+    background-color: rgb(var(--background-accent-light-rgb));
+  }
 
-.button:hover {
-  background-color: #ef5a6e;
-}
+  .courseName {
+    padding-bottom: 1rem;
+    font-size: x-large;
+  }
 
-.buttonTracking {
-  padding: 10px 24px;
-  background-color: #e21833;
-  width: 8.5rem;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: black;
-}
+  .table {
+    /* border: 2px solid black; */
+    border-collapse: collapse;
+  }
 
-.buttonTracking:hover {
-  background-color: #bf293d;
-} */
+  .row {
+    background-color: #626262;
+    text-align: center;
+    text-wrap: nowrap;
+  }
+
+  .row td {
+    /* border: 2px solid black; */
+    padding: 1rem 3rem;
+    font-size: large;
+  }
+
+  .headerRow {
+    background-color: #626262;
+    font-weight: 900;
+    text-wrap: nowrap;
+  }
+
+  .headerRow th {
+    /* border: 2px solid black; */
+    padding: 1rem 3rem;
+    font-size: larger;
+  }
+
+  .progressBar {
+    -webkit-appearance: none;
+    border-radius: 10px;
+    height: 0.75rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .progressBar::-webkit-progress-value {
+    background-color: var(--maryland-red);
+    border-radius: 10px;
+  }
+
+  .progressBar::-webkit-progress-bar {
+    background-color: #424242;
+    border-radius: 10px;
+  }
+}

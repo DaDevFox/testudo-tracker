@@ -3,12 +3,11 @@
 import Image from "next/image";
 import "@/styles/globals.css";
 import styles from "@/styles/components.module.css";
-import SearchBar from "@/components/SearchBar";
+import MongoSearch from "@/components/MongoSearch";
 import SearchResults from "@/components/SearchResults";
 import { useState, useEffect, useRef } from "react";
 import WebsiteTitle from "@/components/WebsiteTitle";
 import { useApp } from "@/components/useApp";
-import MongoSearch from "@/components/MongoSearch";
 const sections = [
   {
     link: "https://google.com",
