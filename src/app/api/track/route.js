@@ -125,3 +125,44 @@ export async function POST(request) {
     });
   }
 }
+
+export async function GET(request) {
+  if (!process.env.MONGODB_URI)
+    return new Response("", { status: HttpStatusCode.ServiceUnavailable });
+
+  const client = new MongoClient(process.env.MONGODB_URI, {});
+  var resultJson = [];
+
+  try {
+    await client
+      .connect()
+      .catch((ex) => console.log(`mongodb connect failure ${ex}`));
+
+    const email = request.nextUrl.searchParams?.get("user_email");
+    // TODO: pagination
+    const page_size = request.nextUrl.searchParams?.get("page_size") || 999;
+    const page = request.nextUrl.searchParams?.get("page");
+    if (!email)
+      return new Response("Requires email request parameter with string value");
+
+    // set namespace
+    const database = client.db("testudo-index");
+    const coll = database.collection("dedicated-users");
+
+    const user = await coll.findOne({ email: email });
+    if (!user)
+      return new Response(`User ${email} could not be located`, {
+        status: HttpStatusCode.NotFound,
+      });
+
+    user.watches.forEach((item) => resultJson.push(item));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await client.close();
+    // send results
+    return new Response(JSON.stringify(resultJson), {
+      status: HttpStatusCode.Ok,
+    });
+  }
+}
