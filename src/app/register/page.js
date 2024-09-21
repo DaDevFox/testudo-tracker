@@ -15,6 +15,14 @@ import {
 import { addUser } from "@/app/createUser";
 
 import AuthBox from "@/components/AuthBox";
+
+import { addUser } from "@/app/createUser";
+
+import AuthBox from "@/components/AuthBox";
+
+import { addUser } from "@/app/createUser";
+
+import AuthBox from "@/components/AuthBox";
 import { auth } from "@/firebase/config";
 
 export default function Register() {

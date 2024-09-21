@@ -3,7 +3,6 @@
 import Image from "next/image";
 import "@/styles/globals.css";
 import styles from "@/styles/components.module.css";
-import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
 import { useState, useEffect, useRef } from "react";
 import WebsiteTitle from "@/components/WebsiteTitle";
