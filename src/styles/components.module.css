@@ -230,39 +230,16 @@ body.activeModal {
   font-family: var(--font-mono);
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.75s ease-out;
+  background: #f1f1f1;
 }
 
-.modalCloseDiv span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.75s;
-}
 
-.modalCloseDiv span:after {
-  content: "\274c";
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.75s;
-}
-
-.modalCloseDiv:hover span {
-  padding-right: 25px;
-}
-
-.modalCloseDiv:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 
 .modalCloseBar {
   position: absolute;
   width: 3rem;
   height: 0.3rem;
-  margin-top: -0.1px;
+  margin-top: -0.2rem;
   background-color: var(--maryland-red);
   transition: 0.75s ease-out;
 }
@@ -299,6 +276,14 @@ body.activeModal {
   background-color: green;
   margin-left: 0rem;
   margin-top: -4px;
+}
+
+.checkMark {
+  position: absolute;
+  margin-top: 5.1rem;
+  margin-left: 28rem;
+  color: green;
+  font-size: 2.7rem;
 }
 
 .modalInfo {

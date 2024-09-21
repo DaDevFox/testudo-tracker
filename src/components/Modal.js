@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import "@/styles/search-page.module.css";
+import TrackButton from "./TrackButton";
 
 const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
   // The modal starts off as hidden
@@ -29,10 +30,7 @@ const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
             </div>
 
             {/* Eventually, we should add a pop up when the class is successfully tracked */}
-            <button className={styles.modalTrackDiv}>
-              Track
-              <div className={styles.modalTrackBar}></div>
-            </button>
+            <TrackButton classTrackName={buttonName} />
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
             <p className={styles.modalInfo}>{buttonName}</p>

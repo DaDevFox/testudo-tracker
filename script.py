@@ -23,7 +23,7 @@ YOUR_GOOGLE_EMAIL = 'testudo.tracker.donotreply@gmail.com'
 YOUR_GOOGLE_EMAIL_APP_PASSWORD = 'zvtmfwzozfkmnqkq'  
 
 
-client = pymongo.MongoClient(os.getenv("DATABASE_LINK"))
+client = pymongo.MongoClient(os.getenv("MONGODB_URI"))
 db = client["testudo-index"]
 collection = db["user-watches"]
 
