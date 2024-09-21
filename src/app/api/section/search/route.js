@@ -3,6 +3,10 @@ import { MongoClient } from "mongodb";
 
 const SearchResultsMax = 100;
 
+export async function POST(request){
+  return new Response(200);
+}
+
 export async function GET(request) {
   if (!process.env.MONGODB_URI)
     return new Response("", { status: HttpStatusCode.ServiceUnavailable });

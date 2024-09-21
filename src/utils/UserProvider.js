@@ -13,7 +13,6 @@ export function UserProvider({ children, value }) {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      console.log(user.email);
     });
   }, [setCurrentUser]);
   return (
