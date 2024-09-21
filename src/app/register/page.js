@@ -2,6 +2,7 @@
 
 import "@/styles/globals.css";
 import styles from "@/styles/AuthBox.module.css";
+import styles from "@/styles/AuthBox.module.css";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -15,8 +16,11 @@ import {
 import { addUser } from "@/app/createUser";
 
 import AuthBox from "@/components/AuthBox";
+
+import { addUser } from "@/app/createUser";
+
+import AuthBox from "@/components/AuthBox";
 import { auth } from "@/firebase/config";
-import { AuthErrorCodes } from "firebase/auth";
 
 export default function Register() {
   const router = useRouter();

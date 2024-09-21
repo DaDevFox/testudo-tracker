@@ -6,18 +6,15 @@ import { useUserValue } from "@/utils/UserProvider";
 
 import { useEffect, useState } from "react";
 
-import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "@/firebase/config";
 
 export default function Navbar(props) {
   const currentUser = useUserValue();
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     setCurrentUser(user);
-  //   });
-  // }, []);
-  // props.user;
+  const logout = () => {
+    signOut(auth);
+  };
 
   return (
     <header className={styles.navbar}>
@@ -53,8 +50,17 @@ export default function Navbar(props) {
               Log In
             </Link>
           ) : (
-            <Link className={styles.navbarItem} href="/">
+            <div className={styles.navbarItem}>
               {currentUser?.email.split("@")[0]}
+            </div>
+          )}
+        </li>
+        <li className={styles.navbarLiItem}>
+          {currentUser == null ? (
+            <div></div>
+          ) : (
+            <Link className={styles.navbarItem} href="/" onClick={logout}>
+              Logout
             </Link>
           )}
         </li>
