@@ -59,7 +59,12 @@ export default function Modal({
             </div>
 
             {/* Eventually, we should add a pop up when the class is successfully tracked */}
-            <TrackButton classTrackName={buttonName} />
+            <TrackButton
+              onClick={() =>
+                trackCourse(course_id.replace(" ", "-"), user.email)
+              }
+              classTrackName={course_id}
+            />
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
             <p className={styles.modalInfo}>{course_id}</p>
