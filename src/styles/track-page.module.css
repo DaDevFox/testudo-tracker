@@ -58,7 +58,7 @@
 @media (prefers-color-scheme: dark) {
   .course {
     padding: 3rem;
-    background-color: rgb(var(--background-accent-dark-rgb));
+    background-color: rgb(var(--background-accent-light-rgb));
   }
 
   .courseName {
