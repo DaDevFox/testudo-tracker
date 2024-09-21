@@ -1,5 +1,4 @@
 import { fuzzyCompare } from "@/utils/SearchUtils";
-import { useState, useRef } from "react";
 import styles from "@/styles/components.module.css";
 
 import Modal from "@/components/Modal";

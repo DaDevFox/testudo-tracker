@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 import styles from "@/styles/components.module.css";
@@ -5,7 +6,35 @@ import "@/styles/globals.css";
 import "@/styles/search-page.module.css";
 import TrackButton from "./TrackButton";
 
-const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
+import { useUserValue } from "@/utils/UserProvider";
+import { trackCourse } from "@/app/trackCourse";
+
+export default function Modal({
+  buttonName: course_id,
+  professor,
+  times,
+  open_seats,
+  waitlist,
+}) {
+  const user = useUserValue();
+
+  const trackCourse = async (course_id, email) => {
+    const res = await fetch(
+      `/api/track?course_id=${course_id}&user_email=${email}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(res);
+    if (!res.ok) {
+      throw new Error("Failed to track course");
+    }
+  };
+
   // The modal starts off as hidden
   const [modal, setModal] = useState(false);
 
@@ -16,7 +45,7 @@ const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
   return (
     <div>
       <div className={styles.btnDiv} onClick={toggleModal}>
-        {buttonName}
+        {course_id}
       </div>
 
       {modal && (
@@ -33,7 +62,7 @@ const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
             <TrackButton classTrackName={buttonName} />
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
-            <p className={styles.modalInfo}>{buttonName}</p>
+            <p className={styles.modalInfo}>{course_id}</p>
             <p className={styles.modalInfo}>Proffessor: {professor}</p>
             <p className={styles.modalInfo}>Timings: MWF 2:30-3:15 PM</p>
             <p className={styles.modalInfo}>Open Seats: 0, Waitlist: 0</p>
@@ -42,6 +71,4 @@ const Modal = ({ buttonName, professor, times, open_seats, waitlist }) => {
       )}
     </div>
   );
-};
-
-export default Modal;
+}

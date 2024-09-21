@@ -1,10 +1,26 @@
 "use client";
 
 import styles from "@/styles/track-page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUserValue } from "@/utils/UserProvider";
 import "@/styles/globals.css";
+import axios from "axios";
 
 export default function Track(props) {
+  const user = useUserValue();
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    const fetchVals = async () => {
+      const res = await axios.get(`/api/track?user_email=${user.email}`);
+
+      console.log(res.data);
+      setSections(res.data);
+    };
+
+    fetchVals();
+  }, []);
+
   const CMSC131sections = [
     {
       course: "CMSC131",
