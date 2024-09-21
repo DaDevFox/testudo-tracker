@@ -20,7 +20,7 @@
 }
 
 .search_div {
-  width: 80rem;
+  width: 70rem;
   background-color: rgb(var(--background-accent-light-rgb));
   color: rgb(var(--foreground-accent-light-rgb));
 }
@@ -46,7 +46,4 @@
   margin-bottom: 0.7%;
 }
 
-.focusHandlerDiv {
-  height: 19.5rem;
-  width: 41rem;
-}
+

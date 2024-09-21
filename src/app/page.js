@@ -25,7 +25,7 @@ export default function Home() {
 
     <div className="card-container">
     <Card imgHeight={85} imgWidth={85} img={check} title="All your classes All the time" description="Never miss a class registration again! The moment a class opens up on Testudo, you'll get an email about it!" />
-    <Card imgHeight={85} imgWidth={85} img={list} title="Track as many as you want" description="Track as many classes as you want from any department at UMD. There's no limit, and it's 100% free" />
+    <Card imgHeight={85} imgWidth={85} img={list} title="Track as many as you want" description="Track as many classes as you want from any department at UMD. There's no limit, and it's 100% free." />
     <Card imgHeight={80} imgWidth={110} img={people} title="Get your friends in your classes" description="Taking classes with your friends is always better, so tell your friends to sign up for Testudo Tracker!" />
     </div>
 

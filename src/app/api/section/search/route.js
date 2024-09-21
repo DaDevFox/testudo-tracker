@@ -34,7 +34,7 @@ export async function GET(request) {
 
     console.log(query_string);
     query_limit = query_limit || 5;
-    query_limit = Math.min(query_limit, SearchResultsMax);
+    query_limit = 100;
 
     const new_query_match = query_string.match(
       "([A-Z]{4})([0-9]?[0-9]?[0-9]?)([- ]?)([FCH0-9]{4}[A-Z0-9]?)?"
