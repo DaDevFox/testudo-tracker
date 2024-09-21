@@ -1,6 +1,4 @@
 "use server";
-import axios from "axios";
-import { HttpStatusCode } from "axios";
 import { MongoClient } from "mongodb";
 
 // TODO: add custom server-sideMongoDB search code here to reduce api call overhead
