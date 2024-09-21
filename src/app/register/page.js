@@ -11,6 +11,9 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
+
+import { addUser } from "@/app/createUser";
+
 import AuthBox from "@/components/AuthBox";
 import { auth } from "@/firebase/config";
 
@@ -24,6 +27,7 @@ export default function Register() {
         sendEmailVerification(auth.currentUser).then(() => {
           router.push("/verify");
         });
+        addUser(email);
       })
       .catch((error) => {
         switch (error.code) {
