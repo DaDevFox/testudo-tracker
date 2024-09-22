@@ -9,18 +9,15 @@
 }
 
 .table {
-  /* border: 2px solid black; */
   border-collapse: collapse;
+  width: 80rem;
 }
 
 .row {
   background-color: #d3d3d3;
-  text-align: center;
-  /* text-wrap: nowrap; */
 }
 
 .row td {
-  /* border: 2px solid black; */
   padding: 1rem 3rem;
   font-size: large;
   line-height: 1.5rem;
@@ -29,11 +26,9 @@
 .headerRow {
   background-color: #d3d3d3;
   font-weight: 900;
-  /* text-wrap: nowrap; */
 }
 
 .headerRow th {
-  /* border: 2px solid black; */
   padding: 1rem 3rem;
   font-size: larger;
   line-height: 1.5rem;
@@ -59,15 +54,6 @@
 .button {
   border: none;
   background: none;
-}
-
-.trash {
-  height: 6rem;
-  width: 4rem;
-}
-
-.trash:hover {
-  background-color: #ef5a6e;
 }
 
 .trackPage {

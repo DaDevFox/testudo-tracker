@@ -83,7 +83,7 @@ function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
           className={styles.button}
           // onClick={(e) => removeSection(sectionNum, e)}
         >
-          <TrashBin className={styles.trash} />
+          <TrashBin />
         </button>
       </td>
     </tr>
