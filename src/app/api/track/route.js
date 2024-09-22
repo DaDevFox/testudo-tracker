@@ -84,7 +84,12 @@ export async function AppendToFastIndex(database, course_id, user_email) {
 
   const result = await collection.updateOne(
     { course_id: course_id },
-    { $set: { emails: updated_emails } },
+    {
+      $set: {
+        emails: updated_emails,
+        professor: section_watches.professor,
+      },
+    },
     { upsert: true }
   );
 
@@ -123,6 +128,8 @@ export async function POST(request) {
     return new Response(`error: ${ex}`, {
       status: HttpStatusCode.InternalServerError,
     });
+  } finally {
+    await client.close();
   }
 }
 
@@ -161,6 +168,83 @@ export async function GET(request) {
   } finally {
     await client.close();
     // send results
+    return new Response(JSON.stringify(resultJson), {
+      status: HttpStatusCode.Ok,
+    });
+  }
+}
+
+export async function DELETE(request) {
+  if (!process.env.MONGODB_URI)
+    return new Response("", { status: HttpStatusCode.ServiceUnavailable });
+
+  const client = new MongoClient(process.env.MONGODB_URI, {});
+
+  var resultJson = [];
+
+  try {
+    await client
+      .connect()
+      .catch((ex) => console.log(`mongodb connect failure ${ex}`));
+
+    const email = request.nextUrl.searchParams?.get("user_email");
+    const course_id = request.nextUrl.searchParams?.get("course_id");
+
+    if (!email)
+      return new Response("Requires email request parameter with string value");
+    if (!course_id)
+      return new Response(
+        "Requires remove course request parameter with string value"
+      );
+
+    const database = client.db("testudo-index");
+    const dedicated = database.collection("dedicated-users");
+    const userWatches = database.collection("user-watches");
+
+    const user = await dedicated.findOne({ email: email });
+    if (!user)
+      return new Response(`User ${email} could not be located`, {
+        status: HttpStatusCode.NotFound,
+      });
+
+    const course = await userWatches.findOne({ course_id: course_id });
+    if (!course)
+      return new Response(`User ${course} could not be found`, {
+        status: HttpStatusCode.NotFound,
+      });
+
+    var new_ded_array = user.watches.filter((item) => item != course_id);
+
+    var new_user_array = course.emails.filter((item) => item != email);
+
+    await dedicated.updateOne(
+      { email: email },
+      {
+        $set: {
+          watches: new_ded_array,
+        },
+      }
+    );
+
+    if (new_user_array.length != 0) {
+      await userWatches.updateOne(
+        { course_id: course_id },
+        {
+          $set: {
+            emails: new_user_array,
+          },
+        }
+      );
+    } else {
+      await userWatches.deleteOne({ course_id: course_id });
+    }
+
+    user.watches.forEach((item) => resultJson.push(item));
+    course.emails.forEach((item) => resultJson.push(item));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await client.close();
     return new Response(JSON.stringify(resultJson), {
       status: HttpStatusCode.Ok,
     });

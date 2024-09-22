@@ -63,6 +63,8 @@ function generateItems(query, sections) {
             item.course_id.split("-")[0] + " " + item.course_id.split("-")[1]
           }
           professor={item.professor}
+          waitlist_entries={item.waitlist_entries}
+          open_seats={item.open_seats}
         />
       </div>
     );
