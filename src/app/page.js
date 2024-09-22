@@ -16,6 +16,10 @@ export default function Home() {
       <WebsiteTitle />
       <p className={styles.tagLine}>Never miss a class again</p>
 
+      <Link className={styles.buttonContainer} href="/register">
+        Sign Up Now!
+      </Link>
+
       <div className={styles.cardContainer}>
         <Card
           imgHeight={85}
@@ -38,10 +42,6 @@ export default function Home() {
           title="Get your friends in your classes"
           description="Taking classes with your friends is always better, so tell your friends to sign up for Testudo Tracker!"
         />
-      </div>
-
-      <div className={styles.buttonContainer}>
-        <Link href="/register">Sign Up Now!</Link>
       </div>
     </div>
   );
