@@ -71,8 +71,19 @@ export async function GET(request) {
   const client = new MongoClient(process.env.MONGODB_URI, {});
   var resultJson = [];
 
-  // performs a search with Atlas autocomplete query
   try {
+    // parse params from url search parameters (GET requests won't take a body with axios + should use params)
+    const query_string = request.nextUrl.searchParams?.get("query_string");
+    var query_limit = request.nextUrl.searchParams?.get("query_limit");
+
+    query_limit = query_limit || 5;
+    query_limit = 100;
+
+    if (!query_string)
+      return new Response(
+        "Requires query_string search parameter with string value"
+      );
+
     await client
       .connect()
       .catch((ex) => console.log(`mongodb connect failure ${ex}`));
@@ -80,19 +91,7 @@ export async function GET(request) {
     const database = client.db("testudo-index");
     const coll = database.collection("section-index");
 
-    // parse params from url search parameters (GET requests won't take a body with axios + should use params)
-    const query_string = request.nextUrl.searchParams?.get("query_string");
-    var query_limit = request.nextUrl.searchParams?.get("query_limit");
-
-    if (!query_string)
-      return new Response(
-        "Requires query_string search parameter with string value"
-      );
-
-    console.log(query_string);
-    query_limit = query_limit || 5;
-    query_limit = 100;
-
+    // performs a search with Atlas autocomplete query
     resultJson = await requestAutocompletes(coll, query_string, query_limit);
   } catch (error) {
     console.log(error);

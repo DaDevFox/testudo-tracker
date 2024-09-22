@@ -1,20 +1,23 @@
 import { HttpStatusCode } from "axios";
 import { MongoClient } from "mongodb";
 
+/**
+ * Endpoint to insert an undetailed section record specified by course_id and professor (in JSON body)
+ *
+ * section details are fetched, validated and updated daily
+ * @param {request} request
+ * @returns
+ */
 export async function POST(request) {
   const client = new MongoClient(process.env.MONGODB_URI, {});
 
+  // prepare request body for use
   return await request.text().then(async (data) => {
     try {
-      await client
-        .connect()
-        .catch((ex) => console.log(`mongodb connect failure ${ex}`));
-
       const database = client.db("testudo-index");
       const collection = database.collection("section-index");
 
       const bodyJson = JSON.parse(data);
-      console.log(bodyJson);
 
       if (!(bodyJson?.course_id && bodyJson?.professor))
         return new Response(
@@ -23,6 +26,10 @@ export async function POST(request) {
             status: HttpStatusCode.BadRequest,
           }
         );
+
+      await client
+        .connect()
+        .catch((ex) => console.log(`mongodb connect failure ${ex}`));
 
       const result = await collection.insertOne({
         course_id: data.course_id,
@@ -42,13 +49,16 @@ export async function POST(request) {
   });
 }
 
+/**
+ * GETs the detailed section record for an exact match to the course_id encoded in the query search params
+ * @param {*} request
+ * @returns
+ */
 export async function GET(request) {
-  // performs an EXACT match query
   const client = new MongoClient(process.env.MONGODB_URI, {});
 
   try {
     const course_id = request.nextUrl.searchParams.get("course_id");
-    console.log(request.nextUrl.searchParams);
 
     if (!course_id) {
       return new Response(
@@ -65,7 +75,6 @@ export async function GET(request) {
     const collection = database.collection("section-index");
 
     // constricting query to ONLY search course code and section num passed into this API
-    console.log("finding");
     var result = await collection.findOne({
       course_id: course_id,
     });
