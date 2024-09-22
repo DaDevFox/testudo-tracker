@@ -64,7 +64,7 @@
 }
 
 .main {
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   display: flex;
   flex-direction: column;
   align-items: center;
