@@ -1,4 +1,4 @@
-import styles from "@/styles/components.module.css";
+import styles from "@/styles/home-page.module.css";
 
 export default function WebsiteTitle(props) {
   return (
