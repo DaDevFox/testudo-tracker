@@ -12,7 +12,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 
-import { addUser } from "@/app/createUser";
+import { addUser } from "@/app/actions";
 
 import AuthBox from "@/components/AuthBox";
 

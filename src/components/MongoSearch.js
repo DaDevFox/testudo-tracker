@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 
-import { searchSections } from "@/app/searchSections";
+import { searchSections } from "@/app/actions";
 
 export default function MongoSearch({ searchBarStyle, searchResultsStyle }) {
   const [query, setQuery] = useState("");

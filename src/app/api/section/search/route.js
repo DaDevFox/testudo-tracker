@@ -19,7 +19,7 @@ export async function requestAutocompletes(
   // preprocess the query string so only those matching four uppercase alphanumerics (e.g. CMSC) at least are matched
   // and pull out the department, course code, and section number
   const new_query_match = query_string
-    .ToUpperCase()
+    .toUpperCase()
     .match("([A-Z]{4})([0-9]?[0-9]?[0-9]?)([- ]?)([FCH0-9]{4}[A-Z0-9]?)?");
   var new_query = "";
 
