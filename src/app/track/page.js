@@ -34,7 +34,6 @@ export default function Track(props) {
         if (!map[course_name]) map[course_name] = [];
         map[course_name].push(res.data);
       }
-
       setSectionsData(map);
     };
 
@@ -62,7 +61,14 @@ export default function Track(props) {
     );
   });
 
-  return <div>{courses}</div>;
+  console.log("drawing");
+  console.log(courses);
+  return (
+    <div>
+      <p>'test'</p>
+      {courses}
+    </div>
+  );
 }
 
 function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
