@@ -34,7 +34,6 @@ export default function Track(props) {
         if (!map[course_name]) map[course_name] = [];
         map[course_name].push(res.data);
       }
-
       setSectionsData(map);
     };
 
