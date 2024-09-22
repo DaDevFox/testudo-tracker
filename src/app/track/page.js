@@ -17,6 +17,7 @@ export default function Track(props) {
       const res = await axios.get(`/api/track?user_email=${user?.email}`);
 
       setSections(res.data);
+      setSectionsPopulated(false);
     };
 
     fetchVals();
