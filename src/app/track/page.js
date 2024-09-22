@@ -1,214 +1,79 @@
 "use client";
 
 import styles from "@/styles/track-page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUserValue } from "@/utils/UserProvider";
 import "@/styles/globals.css";
+import axios from "axios";
 
 export default function Track(props) {
-  const CMSC131sections = [
-    {
-      course: "CMSC131",
-      section: "0101",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 3,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0102",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 9,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0103",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0104",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 12,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0105",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0201",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 5,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0202",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 19,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0203",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0204",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 9,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0205",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 3,
-      status: "Open",
-    },
-  ];
-  const CMSC132sections = [
-    {
-      course: "CMSC132",
-      section: "0101",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 2,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0102",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 1,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0103",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 10,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0104",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0105",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 15,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0201",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 7,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0202",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 4,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0203",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 19,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0204",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 8,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0205",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-  ];
+  const user = useUserValue();
+  const [sections, setSections] = useState([]);
+  const [sectionsData, setSectionsData] = useState({});
 
-  const CMSC131section_num = CMSC131sections.map((section) => (
-    <Row
-      key={section.section}
-      sectionNum={section.section}
-      instructor={section.instructor}
-      seatsAval={(section.seats - section.seatsOpen) / section.seats}
-      seats={section.seats}
-      seatsOpen={section.seatsOpen}
-      status={section.status}
-    />
-  ));
+  useEffect(() => {
+    const fetchVals = async () => {
+      if (!user) return;
+      const res = await axios.get(`/api/track?user_email=${user?.email}`);
 
-  const CMSC132section_num = CMSC132sections.map((section) => (
-    <Row
-      key={section.section}
-      sectionNum={section.section}
-      instructor={section.instructor}
-      seatsAval={(section.seats - section.seatsOpen) / section.seats}
-      seats={section.seats}
-      seatsOpen={section.seatsOpen}
-      status={section.status}
-    />
-  ));
+      setSections(res.data);
+      setSectionsPopulated(false);
+    };
 
-  return (
-    <div>
-      <Course course="CMSC131">{CMSC131section_num}</Course>
+    fetchVals();
+  }, [user]);
 
-      <Course course="CMSC132">{CMSC132section_num}</Course>
-    </div>
-  );
+  useEffect(() => {
+    const populateData = async () => {
+      let map = { ...sectionsData };
+      for (const course_id of sections) {
+        const res = await axios.get(`/api/section?course_id=${course_id}`);
+
+        var course_name = course_id.split("-")[0];
+
+        if (!map[course_name]) map[course_name] = [];
+        map[course_name].push(res.data);
+      }
+
+      setSectionsData(map);
+    };
+
+    populateData();
+  }, [sections]);
+
+  const courses = Object.keys(sectionsData).map((course) => {
+    const rows = sectionsData[course].map((section) => {
+      return (
+        <Row
+          key={section.course_id}
+          sectionNum={section.course_id.split("-")[1]}
+          instructor={section.professor}
+          seats={section.total_seats ?? 30}
+          seatsOpen={section.open_seats ?? 0}
+          status={section.status ?? "CLOSED"}
+        />
+      );
+    });
+
+    return (
+      <Course key={course} course={course}>
+        {rows}
+      </Course>
+    );
+  });
+
+  return <div>{courses}</div>;
 }
 
-function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
+function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
   return (
     <tr className={styles.row}>
       <td>{sectionNum}</td>
       <td>
-        <progress value={seatsAval} className={styles.progressBar} />
+        <progress
+          value={(seats - seatsOpen) / seats}
+          className={styles.progressBar}
+        />
       </td>
       <td>{seatsOpen}</td>
       <td>{seats}</td>

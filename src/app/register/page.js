@@ -15,8 +15,6 @@ import {
 import { addUser } from "@/app/createUser";
 
 import AuthBox from "@/components/AuthBox";
-import { auth } from "@/firebase/config";
-import { AuthErrorCodes } from "firebase/auth";
 
 export default function Register() {
   const router = useRouter();
@@ -61,7 +59,7 @@ export default function Register() {
       onSubmit={register}
     >
       {error && <p className={styles.error}>{error}</p>}
-      <p>
+      <p style={{color: "black"}} >
         Already have an account?{" "}
         <Link
           href="/login"

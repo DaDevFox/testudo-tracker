@@ -20,7 +20,7 @@
 }
 
 .search_div {
-  width: 80rem;
+  width: 70rem;
   background-color: rgb(var(--background-accent-light-rgb));
   color: rgb(var(--foreground-accent-light-rgb));
 }
@@ -35,7 +35,7 @@
 
 .subtitle_block {
   display: flex;
-  width: 21rem;
+  width: 23.4rem;
   height: 8.2px;
   background-color: var(--maryland-gold);
   margin-bottom: 2.2%;
@@ -46,7 +46,4 @@
   margin-bottom: 0.7%;
 }
 
-.focusHandlerDiv {
-  height: 19.5rem;
-  width: 41rem;
-}
+

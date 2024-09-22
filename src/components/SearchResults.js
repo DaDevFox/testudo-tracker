@@ -1,5 +1,4 @@
 import { fuzzyCompare } from "@/utils/SearchUtils";
-import { useState, useRef } from "react";
 import styles from "@/styles/components.module.css";
 
 import Modal from "@/components/Modal";
@@ -64,6 +63,8 @@ function generateItems(query, sections) {
             item.course_id.split("-")[0] + " " + item.course_id.split("-")[1]
           }
           professor={item.professor}
+          waitlist_entries={item.waitlist_entries}
+          open_seats={item.open_seats}
         />
       </div>
     );

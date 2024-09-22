@@ -1,101 +1,49 @@
 "use client";
 
-import Image from "next/image";
 import "@/styles/globals.css";
-import styles from "@/styles/components.module.css";
-import MongoSearch from "@/components/MongoSearch";
-import SearchResults from "@/components/SearchResults";
-import { useState, useEffect, useRef } from "react";
 import WebsiteTitle from "@/components/WebsiteTitle";
-import { useApp } from "@/components/useApp";
-const sections = [
-  {
-    link: "https://google.com",
-    course_name: "CMSC132",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "CMSC330",
-    section_number: "0102",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "CMSC351",
-    section_number: "0103",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "CMSC250",
-    section_number: "0104",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "CMSC131",
-    section_number: "0104",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "CMSC216",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "MATH240",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "SOCY200",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "ENGL101",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "STAT400",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "ENES210",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "BMGT201",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-  {
-    link: "https://google.com",
-    course_name: "BSCI170",
-    section_number: "0101",
-    times: "MWF 0800-0930",
-  },
-];
+import "@/styles/home-page-module.css";
+import Card from "@/components/Card";
+import React from "react";
+import check from "@/media/check-mark.png";
+import list from "@/media/list.png";
+import people from "@/media/peopletwo.png";
+import Link from "next/link";
 
 export default function Home() {
-  const [query, setQuery] = useState("");
-
   return (
-    <div>
+    <div className="home-page-main">
       <WebsiteTitle />
-      <MongoSearch />
+      <p className="tag-line">Never miss a class again</p>
+      <div className="tag-line-bar"></div>
+
+      <div className="card-container">
+        <Card
+          imgHeight={85}
+          imgWidth={85}
+          img={check}
+          title="All your classes All the time"
+          description="Never miss a class registration again! The moment a class opens up on Testudo, you'll get an email about it!"
+        />
+        <Card
+          imgHeight={85}
+          imgWidth={85}
+          img={list}
+          title="Track as many as you want"
+          description="Track as many classes as you want from any department at UMD. There's no limit, and it's 100% free."
+        />
+        <Card
+          imgHeight={80}
+          imgWidth={110}
+          img={people}
+          title="Get your friends in your classes"
+          description="Taking classes with your friends is always better, so tell your friends to sign up for Testudo Tracker!"
+        />
+      </div>
+
+      <div className="button-container">
+        <Link href="/register">Sign Up Now!</Link>
+      </div>
     </div>
   );
 }

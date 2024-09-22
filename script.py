@@ -8,29 +8,37 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.combining import OrTrigger
 from apscheduler.triggers.cron import CronTrigger
 import datetime
-
+import pprint
 # importing os module for environment variables
 import os
 import pymongo
 # importing necessary functions from dotenv library
 from dotenv import load_dotenv, dotenv_values 
 import smtplib
+from email.mime.text import MIMEText
 # loading variables from .env file
-load_dotenv() 
+load_dotenv("./.env.local") 
 
 # Set the email accounts from which to send and receive the notification email
 YOUR_GOOGLE_EMAIL = 'testudo.tracker.donotreply@gmail.com'  
 YOUR_GOOGLE_EMAIL_APP_PASSWORD = 'zvtmfwzozfkmnqkq'  
 
 
-client = pymongo.MongoClient(os.getenv("DATABASE_LINK"))
+client = pymongo.MongoClient(os.getenv("MONGODB_URI"))
 db = client["testudo-index"]
 collection = db["user-watches"]
 
 
+
 master_dict = dict()
 
+
+
 for d in collection.find():
+    print(d["course_id"])
+    print(d["professor"])
+    print(d["emails"])
+    print()
     ind = d["course_id"].index("-")
     master_dict[d["course_id"]] = [d["course_id"][0:ind], d["course_id"][ind+1:], d["professor"], d["emails"]]
 
@@ -81,9 +89,14 @@ def script_main():
                         smtpserver.login(YOUR_GOOGLE_EMAIL, YOUR_GOOGLE_EMAIL_APP_PASSWORD)                
                         sent_from = YOUR_GOOGLE_EMAIL
                         sent_to = recipient_email  
-                        email_text = str(prof.text) + " has " + str(open_seats.text) + " open seats in " + course_id + " in section " + section
-                        smtpserver.sendmail(sent_from, sent_to, email_text)
+                        email_text = course_id+" "+section+ " has " + str(open_seats.txt) + " with " +str(prof.text) + ". Sign up before the seats get taken at: app.testudo.umd.edu/main/dropAdd"
+                        message = MIMEText(email_text, "plain")
+                        message["Subject"] = str(open_seats.txt) + " open seats in " + course_id
+                        message["From"] = sent_from
+                        message["To"] = sent_to
+                        smtpserver.sendmail(sent_from, sent_to, message.as_string())
                         smtpserver.close()                
+                        print("Email sent to "+ recipient_email+ " for "+ course_id + " " + section)
 
 
 # Create and run the scheduler to run the function every time testudo updates
