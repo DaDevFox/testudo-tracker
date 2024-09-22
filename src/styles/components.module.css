@@ -5,6 +5,7 @@
 
 /* NAVBAR */
 .navbar {
+  z-index: 1;
   height: var(
     --navbar-height
   ); /* height controlled by child to fill with center alignment on column-dir flexbox */
@@ -390,27 +391,32 @@ body.activeModal {
   font-size: 22px;
 }
 
-/* Card */
+/* CARD */
 .card {
   width: 21rem;
   height: 23rem;
+
+  font-size: 1rem;
   border-radius: 0rem;
   border-color: #000;
   border-width: 0.4rem;
   border-style: solid;
+
   padding: 1rem;
-  margin-top: 1.2rem;
-  margin-left: 3.8rem;
-  margin-right: 3.8rem;
+  margin: 1.2rem 3.8rem 1.2rem 3.8rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1rem;
 }
 
 .card:hover {
-  border-color: var(--maryland-gold);
+box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
+-webkit-box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
+-moz-box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
 }
+
+
 
 .cardTitle {
   font-size: 1.8rem;
@@ -420,10 +426,6 @@ body.activeModal {
   margin-top: 0rem;
   letter-spacing: 2.1px;
   text-align: center;
-}
-
-.card:hover .cardTitle {
-  color: var(--bronze-testudo);
 }
 
 .cardDescription {
@@ -468,7 +470,6 @@ body.activeModal {
     color: rgb(220, 220, 220);
     margin-bottom: 1.1rem;
     margin-top: 0rem;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     letter-spacing: 2.1px;
     text-align: center;
   }
@@ -483,7 +484,6 @@ body.activeModal {
     color: rgb(220, 220, 220);
     margin-bottom: 1.1rem;
     margin-top: 0rem;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     letter-spacing: 2.1px;
     text-align: center;
   } 

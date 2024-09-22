@@ -16,16 +16,12 @@ export default function Home() {
       <WebsiteTitle />
       <p className={styles.tagLine}>Never miss a class again</p>
 
-      <Link className={styles.buttonContainer} href="/register">
-        Sign Up Now!
-      </Link>
-
       <div className={styles.cardContainer}>
         <Card
           imgHeight={85}
           imgWidth={85}
           img={check}
-          title="All your classes All the time"
+          title="All your classes, All the time"
           description="Never miss a class registration again! The moment a class opens up on Testudo, you'll get an email about it!"
         />
         <Card
@@ -43,6 +39,10 @@ export default function Home() {
           description="Taking classes with your friends is always better, so tell your friends to sign up for Testudo Tracker!"
         />
       </div>
+
+      <Link className={styles.buttonContainer} href="/register">
+        Sign Up Now!
+      </Link>
     </div>
   );
 }
