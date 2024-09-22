@@ -15,7 +15,6 @@ export default function Home() {
     <div className={styles.homePageMain}>
       <WebsiteTitle />
       <p className={styles.tagLine}>Never miss a class again</p>
-      <div className={styles.tagLineBar}></div>
 
       <div className={styles.cardContainer}>
         <Card
