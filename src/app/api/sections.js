@@ -1,6 +1,7 @@
-// import clientPromise from "@/lib/mongodb";
 import { MongoClient } from "mongodb";
 
+// NOTE:
+// This is OLD code from the pages router; migrate to app router eventually
 // NOTE:
 // IMPORTANT:
 // ip addresses of servers on which the website is hosted (during development the device on which you execute 'npm run dev')

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "@/styles/components.module.css";
 
-export default function SearchBar({ onChange }) {
+export default function SearchBar({ onChange, ...props }) {
   const useKeyPress = (targetKey) => {
     const [keyPressed, setKeyPressed] = useState(false);
 
@@ -37,14 +37,15 @@ export default function SearchBar({ onChange }) {
   };
 
   return (
-    <form>
+    // TODO: fix very very hacky
+    <form {...props}>
       <input
+        {...props}
         className={styles.searchBar}
         type="text"
         placeholder="Search..."
         value={query}
         onChange={handleChange}
-
       />
     </form>
   );
