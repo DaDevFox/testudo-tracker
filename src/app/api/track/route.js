@@ -1,7 +1,7 @@
 import { HttpStatusCode } from "axios";
 import { MongoClient } from "mongodb";
 
-export async function AppendToUserIndex(database, course_id, user_email) {
+export async function appendToUserIndex(database, course_id, user_email) {
   const collection = database.collection("dedicated-users");
 
   if (!course_id || !user_email)
@@ -39,7 +39,7 @@ export async function AppendToUserIndex(database, course_id, user_email) {
     });
 }
 
-export async function AppendToFastIndex(database, course_id, user_email) {
+export async function appendToFastIndex(database, course_id, user_email) {
   // TODO: thresholds
   // var threshold_min = request.nextUrl.searchParams?.get("threshold_min");
   const collection = database.collection("user-watches");
@@ -116,10 +116,10 @@ export async function POST(request) {
     const course_id = request.nextUrl.searchParams?.get("course_id");
     var user_email = request.nextUrl.searchParams?.get("user_email");
 
-    var response = await AppendToFastIndex(database, course_id, user_email);
+    var response = await appendToFastIndex(database, course_id, user_email);
     if (response) return response;
 
-    response = await AppendToUserIndex(database, course_id, user_email);
+    response = await appendToUserIndex(database, course_id, user_email);
     if (response) return response;
 
     return new Response(`created!`, { status: HttpStatusCode.Created });

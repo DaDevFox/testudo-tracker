@@ -1,7 +1,7 @@
 "use server";
 import { MongoClient } from "mongodb";
 import { requestAutocompletes } from "./api/section/search/route";
-import { AppendToFastIndex, AppendToUserIndex } from "./api/track/route";
+import { appendToFastIndex, appendToUserIndex } from "./api/track/route";
 
 export async function searchSections(query, limit) {
   var client = new MongoClient(process.env.MONGODB_URI, {});
@@ -52,10 +52,10 @@ export const trackCourse = async () => {
 
     const database = client.db("testudo-index");
 
-    var response = await AppendToFastIndex(database, course_id, email);
+    var response = await appendToFastIndex(database, course_id, email);
     if (response) return response;
 
-    response = await AppendToUserIndex(database, course_id, email);
+    response = await appendToUserIndex(database, course_id, email);
     if (response) return response;
 
     console.log(`acknowledged: ${res.acknowledged}`);
