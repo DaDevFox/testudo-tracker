@@ -32,7 +32,8 @@
   flex-direction: row;
   list-style-type: none; /* Remove bullets */
 
-  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .navbarLiItem {
@@ -128,7 +129,6 @@
   font-weight: lighter;
   font-style: italic;
   visibility: hidden;
-
 }
 
 .searchResult_normal:hover {
@@ -162,14 +162,14 @@
 
 @media (prefers-color-scheme: dark) {
   .searchBar {
-  width: 30rem;
-  margin: 0px;
-  padding: 1rem;
-  color: #000;
-  background-color: #c8c8c8;
-  border-radius: 0.5rem;
-  border-style: none;
-  outline: none;
+    width: 30rem;
+    margin: 0px;
+    padding: 1rem;
+    color: #000;
+    background-color: #c8c8c8;
+    border-radius: 0.5rem;
+    border-style: none;
+    outline: none;
   }
 
   .searchBar:hover {
@@ -192,11 +192,11 @@
   .searchResult_normal:hover {
     background-color: #b8b8b8;
   }
-  
+
   .searchResult_normal:focus {
     background-color: #b8b8b8;
   }
-  
+
   .searchResult_normal {
     padding: 0.6rem;
     background-color: #c8c8c8;
@@ -204,11 +204,11 @@
     /*margin: 0.1rem;*/
     border-radius: 0.1rem;
   }
-  
+
   .searchResult_close:hover {
     background-color: #b8b8b8;
   }
-  
+
   .searchResult_close {
     padding: 0.6rem;
     background-color: #c8c8c8;
@@ -217,9 +217,6 @@
     font-family: var(--font-roboto);
     font-weight: bold;
   }
-
-
-
 }
 
 /* MODAL */
@@ -278,8 +275,6 @@ body.activeModal {
   background: #f1f1f1;
 }
 
-
-
 .modalCloseBar {
   position: absolute;
   width: 3rem;
@@ -331,7 +326,7 @@ body.activeModal {
     font-size: 23px;
     font-weight: normal;
   }
-  
+
   .modalTrackDiv {
     position: absolute;
     top: 7.2rem;
@@ -344,14 +339,15 @@ body.activeModal {
     width: 5.8rem;
     text-align: center;
     color: black;
-  
+
     background: rgb(200, 200, 200);
-  
-    background: linear-gradient(to left, rgb(200, 200, 200) 50%, green 50%) right;
+
+    background: linear-gradient(to left, rgb(200, 200, 200) 50%, green 50%)
+      right;
     background-size: 200%;
     transition: 0.45s ease-out;
   }
-  
+
   .modalTrackDiv:hover {
     background-position: left;
     color: white;
@@ -411,12 +407,10 @@ body.activeModal {
 }
 
 .card:hover {
-box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
--webkit-box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
--moz-box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
+  box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.24);
 }
-
-
 
 .cardTitle {
   font-size: 1.8rem;

@@ -67,23 +67,23 @@ export default function Track(props) {
 function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
   return (
     <tr className={styles.row}>
-      <td>{sectionNum}</td>
-      <td>
+      <td className={styles.rowData}>{sectionNum}</td>
+      <td className={styles.rowData}>
         <progress
           value={(seats - seatsOpen) / seats}
           className={styles.progressBar}
         />
       </td>
-      <td>{seatsOpen}</td>
-      <td>{seats}</td>
-      <td>{instructor}</td>
-      <td>{status}</td>
+      <td className={styles.rowData}>{seatsOpen}</td>
+      <td className={styles.rowData}>{seats}</td>
+      <td className={styles.rowData}>{instructor}</td>
+      <td className={styles.rowData}>{status}</td>
       <td>
         <button
           className={styles.button}
           // onClick={(e) => removeSection(sectionNum, e)}
         >
-          <TrashBin className={styles.trash} />
+          <TrashBin />
         </button>
       </td>
     </tr>
@@ -97,13 +97,13 @@ function Course({ children, course }) {
       <table className={styles.table}>
         <tbody>
           <tr className={styles.headerRow}>
-            <th>Section</th>
-            <th>Availability</th>
-            <th>Open Seats</th>
-            <th>Total Seats</th>
-            <th>Instructor</th>
-            <th>Status</th>
-            <th></th>
+            <th className={styles.headerRowHeader}>Section</th>
+            <th className={styles.headerRowHeader}>Availability</th>
+            <th className={styles.headerRowHeader}>Open Seats</th>
+            <th className={styles.headerRowHeader}>Total Seats</th>
+            <th className={styles.headerRowHeader}>Instructor</th>
+            <th className={styles.headerRowHeader}>Status</th>
+            <th className={styles.headerRowHeader}></th>
           </tr>
           {children}
         </tbody>
