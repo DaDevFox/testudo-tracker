@@ -30,13 +30,10 @@ export default function Track(props) {
         const res = await axios.get(`/api/section?course_id=${course_id}`);
 
         var course_name = course_id.split("-")[0];
-        // console.log(course_name);
 
         if (!map[course_name]) map[course_name] = [];
         map[course_name].push(res.data);
       }
-
-      // console.log(map);
       setSectionsData(map);
     };
 
@@ -44,7 +41,6 @@ export default function Track(props) {
   }, [sections]);
 
   const courses = Object.keys(sectionsData).map((course) => {
-    // console.log(sectionsData[course]);
     const rows = sectionsData[course].map((section) => {
       return (
         <Row
@@ -60,7 +56,6 @@ export default function Track(props) {
 
     return (
       <Course key={course} course={course}>
-        'p'
         {rows}
       </Course>
     );

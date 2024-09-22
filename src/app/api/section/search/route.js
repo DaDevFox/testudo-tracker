@@ -3,7 +3,59 @@ import { MongoClient } from "mongodb";
 
 const SearchResultsMax = 100;
 
-export async function POST(request){
+export async function requestAutocompletes(
+  collection,
+  query_string,
+  query_limit
+) {
+  const new_query_match = query_string.match(
+    "([A-Z]{4})([0-9]?[0-9]?[0-9]?)([- ]?)([FCH0-9]{4}[A-Z0-9]?)?"
+  );
+  var new_query = "";
+  // if (!new_query_match[2])
+  console.log(new_query_match);
+  new_query = `${new_query_match[1]}${new_query_match[2]}`;
+  console.log(`new query: ${new_query}`);
+  // TODO: fix later with mongo regex search
+  // else
+  //   new_query = `${new_query_match[0]}${new_query_match[1]}-${new_query_match[2]}}`;
+
+  // define pipeline
+  const agg = [
+    {
+      $search: {
+        index: "default",
+        regex: {
+          query: `${new_query}[-A-Z0-9]*`,
+          path: "course_id",
+          allowAnalyzedField: true,
+        },
+      },
+    },
+    { $limit: query_limit },
+    {
+      $project: {
+        _id: 0,
+        course_id: 1,
+        professor: 2,
+        waitlist_entries: 3,
+        open_seats: 4,
+      },
+    },
+  ];
+
+  // run pipeline
+  var resultJson = [];
+  const result = await collection.aggregate(agg);
+
+  for await (var document of result) {
+    resultJson.push(document);
+  }
+
+  return resultJson;
+}
+
+export async function POST(request) {
   return new Response(200);
 }
 
@@ -36,40 +88,7 @@ export async function GET(request) {
     query_limit = query_limit || 5;
     query_limit = 100;
 
-    const new_query_match = query_string.match(
-      "([A-Z]{4})([0-9]?[0-9]?[0-9]?)([- ]?)([FCH0-9]{4}[A-Z0-9]?)?"
-    );
-    var new_query = "";
-    // if (!new_query_match[2])
-    console.log(new_query_match);
-    new_query = `${new_query_match[1]}${new_query_match[2]}`;
-    console.log(`new query: ${new_query}`);
-    // TODO: fix later with mongo regex search
-    // else
-    //   new_query = `${new_query_match[0]}${new_query_match[1]}-${new_query_match[2]}}`;
-
-    // define pipeline
-    const agg = [
-      {
-        $search: {
-          index: "default",
-          regex: {
-            query: `${new_query}[-A-Z0-9]*`,
-            path: "course_id",
-            allowAnalyzedField: true,
-          },
-        },
-      },
-      { $limit: query_limit },
-      { $project: { _id: 0, course_id: 1, professor: 2 } },
-    ];
-
-    // run pipeline
-    const result = await coll.aggregate(agg);
-
-    await result.forEach((document) => {
-      resultJson.push(document);
-    });
+    resultJson = await requestAutocompletes(coll, query_string, query_limit);
   } catch (error) {
     console.log(error);
   } finally {
