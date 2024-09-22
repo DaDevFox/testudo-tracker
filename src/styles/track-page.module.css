@@ -45,13 +45,18 @@
 }
 
 .progressBar::-webkit-progress-value {
-  background-color: var(--maryland-red);
+  background-color: var(--bronze-testudo);
   border-radius: 10px;
 }
 
 .progressBar::-webkit-progress-bar {
   background-color: #9a9a9a;
   border-radius: 10px;
+}
+
+.row Image {
+  height: 3rem;
+  width: 2rem;
 }
 
 /* Dark mode styles */
@@ -103,7 +108,7 @@
   }
 
   .progressBar::-webkit-progress-value {
-    background-color: var(--maryland-red);
+    background-color: var(--bronze-testudo);
     border-radius: 10px;
   }
 
