@@ -61,14 +61,7 @@ export default function Track(props) {
     );
   });
 
-  console.log("drawing");
-  console.log(courses);
-  return (
-    <div>
-      <p>'test'</p>
-      {courses}
-    </div>
-  );
+  return <div>{courses}</div>;
 }
 
 function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
