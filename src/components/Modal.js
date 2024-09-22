@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import "@/styles/search-page.module.css";
+import TrackButton from "./TrackButton";
 
 import { useUserValue } from "@/utils/UserProvider";
 import { trackCourse } from "@/app/trackCourse";
@@ -58,15 +59,12 @@ export default function Modal({
             </div>
 
             {/* Eventually, we should add a pop up when the class is successfully tracked */}
-            <button
+            <TrackButton
               onClick={() =>
                 trackCourse(course_id.replace(" ", "-"), user.email)
               }
-              className={styles.modalTrackDiv}
-            >
-              Track
-              <div className={styles.modalTrackBar}></div>
-            </button>
+              classTrackName={course_id}
+            />
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
             <p className={styles.modalInfo}>{course_id}</p>

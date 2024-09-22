@@ -114,7 +114,8 @@
   padding: 1rem;
   margin: 1rem 0rem 1rem 0rem;
   width: 30rem;
-  height: fit-content;
+  height: 20rem;
+  overflow: auto;
   color: #000;
   background-color: #fefefe;
   transition: margin 0.1s, color 0s, height 1s;
@@ -229,39 +230,16 @@ body.activeModal {
   font-family: var(--font-mono);
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.75s ease-out;
+  background: #f1f1f1;
 }
 
-.modalCloseDiv span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.75s;
-}
 
-.modalCloseDiv span:after {
-  content: "\274c";
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.75s;
-}
-
-.modalCloseDiv:hover span {
-  padding-right: 25px;
-}
-
-.modalCloseDiv:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 
 .modalCloseBar {
   position: absolute;
   width: 3rem;
   height: 0.3rem;
-  margin-top: -0.1px;
+  margin-top: -0.2rem;
   background-color: var(--maryland-red);
   transition: 0.75s ease-out;
 }
@@ -300,7 +278,123 @@ body.activeModal {
   margin-top: -4px;
 }
 
+.checkMark {
+  position: absolute;
+  margin-top: 5.1rem;
+  margin-left: 28rem;
+  color: green;
+  font-size: 2.7rem;
+}
+
 .modalInfo {
   margin-top: 1.5%;
   font-size: 22px;
 }
+
+/* Card */
+.card {
+  width: 21rem;
+  height: 23rem;
+  border-radius: 0rem;
+  border-color: #000;
+  border-width: 0.4rem;
+  border-style: solid;
+  padding: 1rem;
+  margin-top: 1.2rem;
+  margin-left: 3.8rem;
+  margin-right: 3.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.card:hover {
+  border-color: var(--maryland-gold);
+}
+
+.cardTitle {
+  font-size: 1.8rem;
+  font-weight: 550;
+  color: black;
+  margin-bottom: 1.1rem;
+  margin-top: 0rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  letter-spacing: 2.1px;
+  text-align: center;
+}
+
+.card:hover .cardTitle {
+  color: var(--bronze-testudo);
+}
+
+.cardDescription {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+  margin-bottom: 1.1rem;
+  margin-top: 0rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  letter-spacing: 2.1px;
+  text-align: center;
+}
+
+.cardImage {
+  filter: invert(0%);
+}
+
+@media (prefers-color-scheme: dark) { /* Dark Mode */
+  .card {
+    width: 21rem;
+    height: 23rem;
+    border-radius: 0rem;
+    border-color: rgb(220, 220, 220);
+    border-width: 0.4rem;
+    border-style: solid;
+    padding: 1rem;
+    margin-top: 1.2rem;
+    margin-left: 3.8rem;
+    margin-right: 3.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .card:hover {
+    border-color: var(--maryland-gold);
+  }
+  
+  .cardTitle {
+    font-size: 1.8rem;
+    font-weight: 550;
+    color: rgb(220, 220, 220);
+    margin-bottom: 1.1rem;
+    margin-top: 0rem;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    letter-spacing: 2.1px;
+    text-align: center;
+  }
+  
+  .card:hover .cardTitle {
+    color: var(--bronze-testudo);
+  }
+  
+  .cardDescription {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgb(220, 220, 220);
+    margin-bottom: 1.1rem;
+    margin-top: 0rem;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    letter-spacing: 2.1px;
+    text-align: center;
+  } 
+
+ .cardImage {
+    filter: invert(100%);
+ }
+}
+
+
+

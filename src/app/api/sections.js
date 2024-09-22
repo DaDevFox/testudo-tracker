@@ -1,6 +1,8 @@
 import { MongoClient } from "mongodb";
 
 // NOTE:
+// This is OLD code from the pages router; migrate to app router eventually
+// NOTE:
 // IMPORTANT:
 // ip addresses of servers on which the website is hosted (during development the device on which you execute 'npm run dev')
 // must be whitelisted in MongoDB -- rn that's just mehul's dev server [TEMP CHANGE EVENTUALLY]

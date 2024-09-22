@@ -96,14 +96,13 @@ const Search = () => {
 
   return (
     <main className="main">
-      <Navbar />
 
       <div className={styles.title_container}>
         <span className={styles.title_span}>
           <h1>Search for a Class</h1>
         </span>
         <div className={styles.title_block}></div> {/*the red rectangle*/}
-        <h3 className={styles.next_sem}>Upcoming Semester: Fall 2024</h3>
+        <h3 className={styles.next_sem}>Upcoming Semester: Spring 2025</h3>
         <div className={styles.subtitle_block}></div> {/*the yellow rectangle*/}
       </div>
 
