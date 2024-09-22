@@ -59,7 +59,7 @@ export default function Register() {
       onSubmit={register}
     >
       {error && <p className={styles.error}>{error}</p>}
-      <p>
+      <p style={{color: "black"}} >
         Already have an account?{" "}
         <Link
           href="/login"

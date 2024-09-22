@@ -4,11 +4,12 @@
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  margin-bottom: 10rem;
+  margin-top: 10rem;
 }
 
 .authBox h1 {
   padding-bottom: 1rem;
+  color: black;
 }
 
 .authBox p {
@@ -37,6 +38,19 @@
   border-radius: 3px;
   border-style: none;
   padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .authBox input {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    border-radius: 3px;
+    border-style: none;
+    padding: 1rem;
+    background-color: #a8a8a8;
+    color: black;
+  }
 }
 
 .authBox button {
