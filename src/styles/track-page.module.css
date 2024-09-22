@@ -16,25 +16,27 @@
 .row {
   background-color: #d3d3d3;
   text-align: center;
-  text-wrap: nowrap;
+  /* text-wrap: nowrap; */
 }
 
 .row td {
   /* border: 2px solid black; */
   padding: 1rem 3rem;
   font-size: large;
+  line-height: 1.5rem;
 }
 
 .headerRow {
   background-color: #d3d3d3;
   font-weight: 900;
-  text-wrap: nowrap;
+  /* text-wrap: nowrap; */
 }
 
 .headerRow th {
   /* border: 2px solid black; */
   padding: 1rem 3rem;
   font-size: larger;
+  line-height: 1.5rem;
 }
 
 .progressBar {
@@ -45,13 +47,36 @@
 }
 
 .progressBar::-webkit-progress-value {
-  background-color: var(--maryland-red);
+  background-color: var(--bronze-testudo);
   border-radius: 10px;
 }
 
 .progressBar::-webkit-progress-bar {
   background-color: #9a9a9a;
   border-radius: 10px;
+}
+
+.button {
+  border: none;
+  background: none;
+}
+
+.trash {
+  height: 6rem;
+  width: 4rem;
+}
+
+.trash:hover {
+  background-color: #ef5a6e;
+}
+
+.trackPage {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10rem;
 }
 
 /* Dark mode styles */
@@ -74,7 +99,7 @@
   .row {
     background-color: #626262;
     text-align: center;
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
   }
 
   .row td {
@@ -86,7 +111,7 @@
   .headerRow {
     background-color: #626262;
     font-weight: 900;
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
   }
 
   .headerRow th {
@@ -103,7 +128,7 @@
   }
 
   .progressBar::-webkit-progress-value {
-    background-color: var(--maryland-red);
+    background-color: var(--bronze-testudo);
     border-radius: 10px;
   }
 

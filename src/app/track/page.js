@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "@/styles/track-page.module.css";
+import TrashBin from "@/components/TrashBin";
 import { useEffect, useState } from "react";
 import { useUserValue } from "@/utils/UserProvider";
 import "@/styles/globals.css";
@@ -60,7 +61,7 @@ export default function Track(props) {
     );
   });
 
-  return <div>{courses}</div>;
+  return <div className={styles.trackPage}>{courses}</div>;
 }
 
 function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
@@ -77,6 +78,14 @@ function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
       <td>{seats}</td>
       <td>{instructor}</td>
       <td>{status}</td>
+      <td>
+        <button
+          className={styles.button}
+          // onClick={(e) => removeSection(sectionNum, e)}
+        >
+          <TrashBin className={styles.trash} />
+        </button>
+      </td>
     </tr>
   );
 }
@@ -94,6 +103,7 @@ function Course({ children, course }) {
             <th>Total Seats</th>
             <th>Instructor</th>
             <th>Status</th>
+            <th></th>
           </tr>
           {children}
         </tbody>

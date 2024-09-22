@@ -1,5 +1,5 @@
 /* EXTERNAL ELEMENTS */
-.subNavbar{
+.subNavbar {
   margin-top: var(--navbar-height);
 }
 
@@ -442,7 +442,8 @@ box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
   filter: invert(0%);
 }
 
-@media (prefers-color-scheme: dark) { /* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  /* Dark Mode */
   .card {
     width: 21rem;
     height: 23rem;
@@ -463,7 +464,7 @@ box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
   .card:hover {
     border-color: var(--maryland-gold);
   }
-  
+
   .cardTitle {
     font-size: 1.8rem;
     font-weight: 550;
@@ -473,11 +474,11 @@ box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
     letter-spacing: 2.1px;
     text-align: center;
   }
-  
+
   .card:hover .cardTitle {
     color: var(--bronze-testudo);
   }
-  
+
   .cardDescription {
     font-size: 1.2rem;
     font-weight: 400;
@@ -486,12 +487,16 @@ box-shadow: -5px 10px 267px -27px rgba(0,0,0,0.24);
     margin-top: 0rem;
     letter-spacing: 2.1px;
     text-align: center;
-  } 
+  }
 
- .cardImage {
+  .cardImage {
     filter: invert(100%);
- }
+  }
 }
 
-
-
+/* Trash Bin */
+.image {
+  width: 2rem;
+  height: 3rem;
+  color: var(--maryland-red);
+}
