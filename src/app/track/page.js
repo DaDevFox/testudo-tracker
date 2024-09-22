@@ -9,214 +9,75 @@ import axios from "axios";
 export default function Track(props) {
   const user = useUserValue();
   const [sections, setSections] = useState([]);
+  const [sectionsPopulated, setSectionsPopulated] = useState(undefined);
+
+  var sectionsAggregated = () => {
+    var map = {};
+
+    for (var section in sections) {
+      if (!section || typeof section != {}) continue;
+      console.log(section);
+      var course = section.course_id.split("-")[0];
+
+      if (!course in map) map[course] = [];
+      map[course].push(section);
+    }
+
+    return map;
+  };
 
   useEffect(() => {
     const fetchVals = async () => {
-      const res = await axios.get(`/api/track?user_email=${user.email}`);
+      if (!user) return;
+      const res = await axios.get(`/api/track?user_email=${user?.email}`);
 
-      console.log(res.data);
       setSections(res.data);
+      setSectionsPopulated(false);
     };
 
     fetchVals();
-  }, []);
+  }, [user]);
 
-  const CMSC131sections = [
-    {
-      course: "CMSC131",
-      section: "0101",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 3,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0102",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 9,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0103",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0104",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 12,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0105",
-      instructor: "Elias Gonzalez",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0201",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 5,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0202",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 19,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0203",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0204",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 9,
-      status: "Open",
-    },
-    {
-      course: "CMSC131",
-      section: "0205",
-      instructor: "Pedram Sadeghian",
-      seats: 36,
-      seatsOpen: 3,
-      status: "Open",
-    },
-  ];
-  const CMSC132sections = [
-    {
-      course: "CMSC132",
-      section: "0101",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 2,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0102",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 1,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0103",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 10,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0104",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0105",
-      instructor: "Larry Herman",
-      seats: 36,
-      seatsOpen: 15,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0201",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 7,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0202",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 4,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0203",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 19,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0204",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 8,
-      status: "Open",
-    },
-    {
-      course: "CMSC132",
-      section: "0205",
-      instructor: "Nora Burkhauser",
-      seats: 36,
-      seatsOpen: 0,
-      status: "Waitlist Open",
-    },
-  ];
+  useEffect(() => {
+    const populateData = async (course, map) => {
+      const res = await axios.get(`/api/section?course_id=${course}`);
 
-  const CMSC131section_num = CMSC131sections.map((section) => (
-    <Row
-      key={section.section}
-      sectionNum={section.section}
-      instructor={section.instructor}
-      seatsAval={(section.seats - section.seatsOpen) / section.seats}
-      seats={section.seats}
-      seatsOpen={section.seatsOpen}
-      status={section.status}
-    />
-  ));
+      var section = null;
+      console.log(course);
+      for (var i in sections) {
+        if (sections[i].course_id == course) {
+          map[course] = res.data;
+          console.log(map);
+          break;
+        }
+      }
+    };
 
-  const CMSC132section_num = CMSC132sections.map((section) => (
-    <Row
-      key={section.section}
-      sectionNum={section.section}
-      instructor={section.instructor}
-      seatsAval={(section.seats - section.seatsOpen) / section.seats}
-      seats={section.seats}
-      seatsOpen={section.seatsOpen}
-      status={section.status}
-    />
-  ));
+    var map = {};
 
-  return (
-    <div>
-      <Course course="CMSC131">{CMSC131section_num}</Course>
+    for (var i in sections) {
+      populateData(sections[i], map);
+    }
+  }, [sectionsPopulated]);
 
-      <Course course="CMSC132">{CMSC132section_num}</Course>
-    </div>
-  );
+  const aggregated = sectionsAggregated();
+  const courses = Object.keys(aggregated).map((course) => {
+    const rows = aggregated[course].map((section) => {
+      <Row
+        key={section.section}
+        sectionNum={section.section}
+        instructor={section.instructor}
+        seatsAval={(section.seats - section.seatsOpen) / section.seats}
+        seats={section.seats}
+        seatsOpen={section.seatsOpen}
+        status={section.status}
+      />;
+    });
+
+    return <Course course={course}>{rows}</Course>;
+  });
+
+  return <div>{courses}</div>;
 }
 
 function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
