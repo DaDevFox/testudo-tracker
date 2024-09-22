@@ -1,13 +1,15 @@
 "use server";
-import axios from "axios";
+import { MongoClient } from "mongodb";
+import { requestAutocompletes } from "./api/section/search/route";
 
-// TODO: add custom server-side MongoDB search code here to reduce api call overhead
-export async function searchSections(query) {
-  const res = await axios.get(
-    `${process.env.SERVER_URL}/api/section/search?query_string=${query}`
-  );
+export async function searchSections(query, limit) {
+  var client = new MongoClient(process.env.MONGODB_URI, {});
+  await client
+    .connect()
+    .catch((ex) => console.log(`MongoDB connect failure ${ex}`));
 
-  console.log(`res: ${res.data}`);
+  const database = client.db("testudo-index");
+  const collection = database.collection("section-index");
 
-  return res.data;
+  return await requestAutocompletes(collection, query, limit || 10);
 }
