@@ -84,7 +84,12 @@ export async function AppendToFastIndex(database, course_id, user_email) {
 
   const result = await collection.updateOne(
     { course_id: course_id },
-    { $set: { emails: updated_emails } },
+    {
+      $set: {
+        emails: updated_emails,
+        professor: section_watches.professor,
+      },
+    },
     { upsert: true }
   );
 
