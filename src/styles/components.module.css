@@ -141,7 +141,7 @@
 .searchResult_normal {
   padding: 0.6rem;
   background-color: #fefefe;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   /*margin: 0.1rem;*/
   border-radius: 0.1rem;
 }
@@ -155,7 +155,7 @@
   background-color: #fefefe;
   /*margin: 0.1rem;*/
   border-radius: 0.1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   font-weight: bold;
 }
 
@@ -199,7 +199,7 @@
   .searchResult_normal {
     padding: 0.6rem;
     background-color: #c8c8c8;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     /*margin: 0.1rem;*/
     border-radius: 0.1rem;
   }
@@ -213,30 +213,12 @@
     background-color: #c8c8c8;
     /*margin: 0.1rem;*/
     border-radius: 0.1rem;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     font-weight: bold;
   }
 
 
 
-}
-
-/* WEBSITE TITLE */
-.websiteTitleContainer {
-  width: 100vw;
-  background-color: rgb(var(--background-accent-light-rgb));
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 0rem 0rem 2rem 0rem;
-}
-
-.websiteTitle {
-  margin: 2rem;
-  padding: 2rem;
-  background-color: var(--maryland-emphasis-background);
-  color: var(--maryland-emphasis-foreground);
-  width: fit-content;
 }
 
 /* MODAL */
@@ -289,7 +271,7 @@ body.activeModal {
   top: 0.9rem;
   right: 0.9rem;
   padding: 0 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   font-size: 1rem;
   cursor: pointer;
   background: #f1f1f1;
@@ -312,7 +294,7 @@ body.activeModal {
   top: 7.2rem;
   right: 2.6rem;
   padding: 0 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   font-size: 1.8rem;
   cursor: pointer;
   border: none;
@@ -354,7 +336,7 @@ body.activeModal {
     top: 7.2rem;
     right: 2.6rem;
     padding: 0 0;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     font-size: 1.8rem;
     cursor: pointer;
     border: none;
@@ -379,7 +361,7 @@ body.activeModal {
     top: 0.9rem;
     right: 0.9rem;
     padding: 0 0;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     font-size: 1rem;
     cursor: pointer;
     background: rgb(200, 200, 200);
@@ -436,7 +418,6 @@ body.activeModal {
   color: black;
   margin-bottom: 1.1rem;
   margin-top: 0rem;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   letter-spacing: 2.1px;
   text-align: center;
 }
@@ -451,7 +432,6 @@ body.activeModal {
   color: black;
   margin-bottom: 1.1rem;
   margin-top: 0rem;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   letter-spacing: 2.1px;
   text-align: center;
 }

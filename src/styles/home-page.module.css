@@ -10,7 +10,6 @@
   }
 }
 
-
 .websiteTitleContainer {
     position: relative;
   
@@ -39,6 +38,7 @@
 
 
 .websiteTitleContainer:after{
+    transition: 1s;
     content: "";
     position:absolute;
     left: 0;
@@ -65,13 +65,14 @@
 }
 
 .tagLine {
+    font-family: var(--font-inter);
+
     font-size: 4rem;
     word-spacing: 0.8;
     font-weight: 550;
     color: black;
     margin-bottom: 0.75rem;
     margin-top: -1.7rem;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     letter-spacing: 2.1px;
 }
 
@@ -111,7 +112,6 @@
         color: rgb(220, 220, 220);
         margin-bottom: 0.75rem;
         margin-top: -1.7rem;
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         letter-spacing: 2.1px;
     }
 }
