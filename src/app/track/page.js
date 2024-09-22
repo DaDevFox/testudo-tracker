@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "@/styles/track-page.module.css";
+import TrashBin from "@/components/TrashBin";
 import { useEffect, useState } from "react";
 import { useUserValue } from "@/utils/UserProvider";
 import "@/styles/globals.css";
@@ -17,7 +18,6 @@ export default function Track(props) {
       const res = await axios.get(`/api/track?user_email=${user?.email}`);
 
       setSections(res.data);
-      setSectionsPopulated(false);
     };
 
     fetchVals();
@@ -61,13 +61,12 @@ export default function Track(props) {
     );
   });
 
-  return <div>{courses}</div>;
+  return <div className={styles.trackPage}>{courses}</div>;
 }
 
 function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
   return (
     <tr className={styles.row}>
-      {/* {console.log(CMSC131sections.find((i) => i.section !== "0101"))} */}
       <td>{sectionNum}</td>
       <td>
         <progress
@@ -80,8 +79,11 @@ function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
       <td>{instructor}</td>
       <td>{status}</td>
       <td>
-        <button onClick={(e) => removeSection(sectionNum, e)}>
-          <TrashBin />
+        <button
+          className={styles.button}
+          // onClick={(e) => removeSection(sectionNum, e)}
+        >
+          <TrashBin className={styles.trash} />
         </button>
       </td>
     </tr>

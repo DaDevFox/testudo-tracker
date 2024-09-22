@@ -13,8 +13,8 @@ export default function Modal({
   buttonName: course_id,
   professor,
   times,
-  waitlist_entries, 
-  open_seats
+  waitlist_entries,
+  open_seats,
 }) {
   const user = useUserValue();
 
@@ -68,9 +68,11 @@ export default function Modal({
 
             <h2 className={styles.modalTtile}>Track this Class?</h2>
             <p className={styles.modalInfo}>{course_id}</p>
-            <p className={styles.modalInfo}>Proffessor: {professor}</p>
+            <p className={styles.modalInfo}>Professor: {professor}</p>
             <p className={styles.modalInfo}>Timings: MWF 2:30-3:15 PM</p>
-            <p className={styles.modalInfo}>Open Seats: {open_seats}, Waitlist: {waitlist_entries}</p>
+            <p className={styles.modalInfo}>
+              Open Seats: {open_seats}, Waitlist: {waitlist_entries}
+            </p>
           </div>
         </div>
       )}
