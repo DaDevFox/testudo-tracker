@@ -9,22 +9,7 @@ import axios from "axios";
 export default function Track(props) {
   const user = useUserValue();
   const [sections, setSections] = useState([]);
-  const [sectionsPopulated, setSectionsPopulated] = useState(undefined);
-
-  var sectionsAggregated = () => {
-    var map = {};
-
-    for (var section in sections) {
-      if (!section || typeof section != {}) continue;
-      console.log(section);
-      var course = section.course_id.split("-")[0];
-
-      if (!course in map) map[course] = [];
-      map[course].push(section);
-    }
-
-    return map;
-  };
+  const [sectionsData, setSectionsData] = useState({});
 
   useEffect(() => {
     const fetchVals = async () => {
@@ -32,60 +17,73 @@ export default function Track(props) {
       const res = await axios.get(`/api/track?user_email=${user?.email}`);
 
       setSections(res.data);
-      setSectionsPopulated(false);
     };
 
     fetchVals();
   }, [user]);
 
   useEffect(() => {
-    const populateData = async (course, map) => {
-      const res = await axios.get(`/api/section?course_id=${course}`);
+    const populateData = async () => {
+      let map = { ...sectionsData };
+      for (const course_id of sections) {
+        const res = await axios.get(`/api/section?course_id=${course_id}`);
 
-      var section = null;
-      console.log(course);
-      for (var i in sections) {
-        if (sections[i].course_id == course) {
-          map[course] = res.data;
-          console.log(map);
-          break;
-        }
+        var course_name = course_id.split("-")[0];
+        // console.log(course_name);
+
+        if (!map[course_name]) map[course_name] = [];
+        map[course_name].push(res.data);
       }
+
+      // console.log(map);
+      setSectionsData(map);
     };
 
-    var map = {};
+    populateData();
+  }, [sections]);
 
-    for (var i in sections) {
-      populateData(sections[i], map);
-    }
-  }, [sectionsPopulated]);
-
-  const aggregated = sectionsAggregated();
-  const courses = Object.keys(aggregated).map((course) => {
-    const rows = aggregated[course].map((section) => {
-      <Row
-        key={section.section}
-        sectionNum={section.section}
-        instructor={section.instructor}
-        seatsAval={(section.seats - section.seatsOpen) / section.seats}
-        seats={section.seats}
-        seatsOpen={section.seatsOpen}
-        status={section.status}
-      />;
+  const courses = Object.keys(sectionsData).map((course) => {
+    // console.log(sectionsData[course]);
+    const rows = sectionsData[course].map((section) => {
+      return (
+        <Row
+          key={section.course_id}
+          sectionNum={section.course_id.split("-")[1]}
+          instructor={section.professor}
+          seats={section.total_seats ?? 30}
+          seatsOpen={section.open_seats ?? 0}
+          status={section.status ?? "CLOSED"}
+        />
+      );
     });
 
-    return <Course course={course}>{rows}</Course>;
+    return (
+      <Course key={course} course={course}>
+        'p'
+        {rows}
+      </Course>
+    );
   });
 
-  return <div>{courses}</div>;
+  console.log("drawing");
+  console.log(courses);
+  return (
+    <div>
+      <p>'test'</p>
+      {courses}
+    </div>
+  );
 }
 
-function Row({ sectionNum, instructor, seatsAval, seats, seatsOpen, status }) {
+function Row({ sectionNum, instructor, seats, seatsOpen, status }) {
   return (
     <tr className={styles.row}>
       <td>{sectionNum}</td>
       <td>
-        <progress value={seatsAval} className={styles.progressBar} />
+        <progress
+          value={(seats - seatsOpen) / seats}
+          className={styles.progressBar}
+        />
       </td>
       <td>{seatsOpen}</td>
       <td>{seats}</td>
