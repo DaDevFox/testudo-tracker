@@ -13,8 +13,8 @@ export default function Modal({
   buttonName: course_id,
   professor,
   times,
-  open_seats,
-  waitlist,
+  waitlist_entries, 
+  open_seats
 }) {
   const user = useUserValue();
 
@@ -70,7 +70,7 @@ export default function Modal({
             <p className={styles.modalInfo}>{course_id}</p>
             <p className={styles.modalInfo}>Proffessor: {professor}</p>
             <p className={styles.modalInfo}>Timings: MWF 2:30-3:15 PM</p>
-            <p className={styles.modalInfo}>Open Seats: 0, Waitlist: 0</p>
+            <p className={styles.modalInfo}>Open Seats: {open_seats}, Waitlist: {waitlist_entries}</p>
           </div>
         </div>
       )}

@@ -61,7 +61,7 @@ export async function GET(request) {
         },
       },
       { $limit: query_limit },
-      { $project: { _id: 0, course_id: 1, professor: 2 } },
+      { $project: { _id: 0, course_id: 1, professor: 2, waitlist_entries: 3, open_seats: 4 } },
     ];
 
     // run pipeline
