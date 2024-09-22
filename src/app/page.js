@@ -2,7 +2,7 @@
 
 import "@/styles/globals.css";
 import WebsiteTitle from "@/components/WebsiteTitle";
-import "@/styles/home-page-module.css";
+import styles from "@/styles/home-page.module.css";
 import Card from "@/components/Card";
 import React from "react";
 import check from "@/media/check-mark.png";
@@ -12,12 +12,12 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="home-page-main">
+    <div className={styles.homePageMain}>
       <WebsiteTitle />
-      <p className="tag-line">Never miss a class again</p>
-      <div className="tag-line-bar"></div>
+      <p className={styles.tagLine}>Never miss a class again</p>
+      <div className={styles.tagLineBar}></div>
 
-      <div className="card-container">
+      <div className={styles.cardContainer}>
         <Card
           imgHeight={85}
           imgWidth={85}
@@ -41,7 +41,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="button-container">
+      <div className={styles.buttonContainer}>
         <Link href="/register">Sign Up Now!</Link>
       </div>
     </div>

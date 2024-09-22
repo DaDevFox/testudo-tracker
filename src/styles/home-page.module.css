@@ -1,10 +1,10 @@
-.home-page-main {
+.homePageMain {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.tag-line {
+.tagLine {
     font-size: 4rem;
     word-spacing: 0.8;
     font-weight: 550;
@@ -15,7 +15,7 @@
     letter-spacing: 2.1px;
 }
 
-.tag-line-bar {
+.tagLineBar {
     width: 52rem;
     height: 0.31rem;
     background-color: var(--maryland-red);
@@ -23,12 +23,12 @@
     margin-top: 0.15rem;
 }
 
-.card-container {
+.cardContainer {
     display: flex;
     flex-direction: row;
 }
 
-.button-container {
+.buttonContainer {
     display: flex;
     flex-direction: row;
     margin-top: 1.5rem;
@@ -39,12 +39,12 @@
     padding: 1rem 1rem 1rem 1rem;
 }
 
-.button-container:hover {
+.buttonContainer:hover {
     background-color: var(--maryland-red);
 }
 
 @media (prefers-color-scheme: dark) {
-    .tag-line {
+    .tagLine {
         font-size: 4rem;
         word-spacing: 0.8;
         font-weight: 550;
