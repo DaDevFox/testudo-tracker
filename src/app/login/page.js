@@ -54,7 +54,7 @@ export default function Login() {
       onSubmit={login}
     >
       {error && <p className={styles.error}>{error}</p>}
-      <p style={{color: "black"}} >
+      <p style={{ color: "black" }}>
         Don&rsquo;t have an account?{" "}
         <Link
           href="/register"
