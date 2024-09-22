@@ -1,6 +1,13 @@
 import { HttpStatusCode } from "axios";
 import { MongoClient } from "mongodb";
 
+/**
+ * appends a record of a user watching a course section to a user-major collection/index
+ * @param {*} database
+ * @param {*} course_id
+ * @param {*} user_email
+ * @returns
+ */
 export async function appendToUserIndex(database, course_id, user_email) {
   const collection = database.collection("dedicated-users");
 
@@ -9,6 +16,7 @@ export async function appendToUserIndex(database, course_id, user_email) {
       "Requires course_id and user_email search parameter with string values"
     );
 
+  // find the user-keyed (by email) item record
   var user_record = await collection.findOne({
     email: user_email,
   });
@@ -18,6 +26,7 @@ export async function appendToUserIndex(database, course_id, user_email) {
       status: HttpStatusCode.Unauthorized,
     });
 
+  // duplicate their watches and append one
   var updated_watches = user_record.watches;
   if (!updated_watches.includes(course_id)) updated_watches.push(course_id);
   else
@@ -26,6 +35,7 @@ export async function appendToUserIndex(database, course_id, user_email) {
       { status: HttpStatusCode.Conflict }
     );
 
+  // update the item record
   const result = await collection.updateOne(
     { email: user_email },
     { $set: { watches: updated_watches } },
@@ -39,6 +49,13 @@ export async function appendToUserIndex(database, course_id, user_email) {
     });
 }
 
+/**
+ * appends a record of a user watching a section to a 'fast' (course-major for fast notification distrtibution) database
+ * @param {*} database
+ * @param {*} course_id
+ * @param {*} user_email
+ * @returns
+ */
 export async function appendToFastIndex(database, course_id, user_email) {
   // TODO: thresholds
   // var threshold_min = request.nextUrl.searchParams?.get("threshold_min");
@@ -49,6 +66,7 @@ export async function appendToFastIndex(database, course_id, user_email) {
       "Requires course_id and user_email search parameter with string values"
     );
 
+  // get the course_id-keyed item record
   var section_watches = await collection.findOne({
     course_id: course_id,
   });
@@ -61,6 +79,7 @@ export async function appendToFastIndex(database, course_id, user_email) {
         course_id: course_id,
       });
 
+    // pull course data from the detailed information index
     if (!section_index_entry)
       return new Response(
         `Course section with id ${course_id} could not be located; aborting`,
@@ -74,6 +93,7 @@ export async function appendToFastIndex(database, course_id, user_email) {
     };
   }
 
+  // copy course record user email array and append a value
   var updated_emails = section_watches.emails;
   if (!updated_emails.includes(user_email)) updated_emails.push(user_email);
   else
@@ -82,6 +102,7 @@ export async function appendToFastIndex(database, course_id, user_email) {
       { status: HttpStatusCode.Conflict }
     );
 
+  // and update course record with larger array
   const result = await collection.updateOne(
     { course_id: course_id },
     {
@@ -100,6 +121,11 @@ export async function appendToFastIndex(database, course_id, user_email) {
     });
 }
 
+/**
+ * adds a user watch to two symmetric database collections for fast notification service
+ * @param {*} request
+ * @returns
+ */
 export async function POST(request) {
   if (!process.env.MONGODB_URI)
     return new Response("", { status: HttpStatusCode.ServiceUnavailable });
@@ -110,7 +136,6 @@ export async function POST(request) {
       .connect()
       .catch((ex) => console.log(`mongodb connect failure ${ex}`));
 
-    // set namespace
     const database = client.db("testudo-index");
 
     const course_id = request.nextUrl.searchParams?.get("course_id");
@@ -131,6 +156,11 @@ export async function POST(request) {
   }
 }
 
+/**
+ * gets all user watchs for a given user
+ * @param {*} request
+ * @returns
+ */
 export async function GET(request) {
   if (!process.env.MONGODB_URI)
     return new Response("", { status: HttpStatusCode.ServiceUnavailable });
@@ -165,6 +195,7 @@ export async function GET(request) {
     console.log(error);
   } finally {
     await client.close();
+
     // send results
     return new Response(JSON.stringify(resultJson), {
       status: HttpStatusCode.Ok,

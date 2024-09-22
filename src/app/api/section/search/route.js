@@ -3,11 +3,8 @@ import { MongoClient } from "mongodb";
 
 const SearchResultsMax = 100;
 
-// SECTION-INDEX
-// -------------
-
 /**
- * given the section-index collection connection, queries the DB for courses and returns [query_limit]
+ * given the detailed section collection connection, queries the DB for courses and returns [query_limit]
  * results of autocompletion options
  * @param {*} collection
  * @param {*} query_string
