@@ -2,6 +2,10 @@
   "name": "testudo-tracker",
   "version": "0.1.0",
   "private": true,
+  "engines":{
+    "node": ">=20.11.0",
+    "npm": "please-use-npm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,7 +18,7 @@
     "firebase": "^10.12.5",
     "js-levenshtein": "^1.1.6",
     "mongodb": "^6.5.9",
-    "next": "14.2.4",
+    "next": "^14.2.13",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
     "react": "^18",
