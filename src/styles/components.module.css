@@ -456,7 +456,9 @@ body.activeModal {
   }
 
   .card:hover {
-    border-color: var(--maryland-gold);
+    box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.883);
+    -webkit-box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.883);
+    -moz-box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.883);
   }
 
   .cardTitle {
@@ -469,9 +471,6 @@ body.activeModal {
     text-align: center;
   }
 
-  .card:hover .cardTitle {
-    color: var(--bronze-testudo);
-  }
 
   .cardDescription {
     font-size: 1.2rem;
