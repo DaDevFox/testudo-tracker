@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { MongoClient } from "mongodb";
 
 // DANGER: FLUSH ONLY IF YOU KNOW WHAT YOU'RE DOING
-const flush = true;
+const flush = false;
 // if flushing only
 const sort = true;
 export const dynamic = "force-dynamic";
