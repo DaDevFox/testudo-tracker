@@ -19,6 +19,12 @@ export default function Navbar(props) {
   return (
     <header className={styles.navbar}>
       <ul className={styles.navbarContainer}>
+        <li
+          className={styles.navbarLiItem}
+          style={{ position: "absolute", left: "0.625rem" }}
+        >
+          {currentUser?.email.split("@")[0]}
+        </li>
         <li className={styles.navbarLiItem}>
           <Link className={styles.navbarItem} href="/">
             Home
@@ -49,15 +55,6 @@ export default function Navbar(props) {
             <Link className={styles.navbarItem} href="/login">
               Log In
             </Link>
-          ) : (
-            <div className={styles.navbarItem}>
-              {currentUser?.email.split("@")[0]}
-            </div>
-          )}
-        </li>
-        <li className={styles.navbarLiItem}>
-          {currentUser == null ? (
-            <div></div>
           ) : (
             <Link className={styles.navbarItem} href="/" onClick={logout}>
               Logout

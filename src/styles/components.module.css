@@ -1,10 +1,11 @@
 /* EXTERNAL ELEMENTS */
-.subNavbar{
+.subNavbar {
   margin-top: var(--navbar-height);
 }
 
 /* NAVBAR */
 .navbar {
+  z-index: 1;
   height: var(
     --navbar-height
   ); /* height controlled by child to fill with center alignment on column-dir flexbox */
@@ -31,7 +32,8 @@
   flex-direction: row;
   list-style-type: none; /* Remove bullets */
 
-  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .navbarLiItem {
@@ -127,7 +129,6 @@
   font-weight: lighter;
   font-style: italic;
   visibility: hidden;
-
 }
 
 .searchResult_normal:hover {
@@ -141,7 +142,7 @@
 .searchResult_normal {
   padding: 0.6rem;
   background-color: #fefefe;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   /*margin: 0.1rem;*/
   border-radius: 0.1rem;
 }
@@ -155,20 +156,20 @@
   background-color: #fefefe;
   /*margin: 0.1rem;*/
   border-radius: 0.1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   font-weight: bold;
 }
 
 @media (prefers-color-scheme: dark) {
   .searchBar {
-  width: 30rem;
-  margin: 0px;
-  padding: 1rem;
-  color: #000;
-  background-color: #c8c8c8;
-  border-radius: 0.5rem;
-  border-style: none;
-  outline: none;
+    width: 30rem;
+    margin: 0px;
+    padding: 1rem;
+    color: #000;
+    background-color: #c8c8c8;
+    border-radius: 0.5rem;
+    border-style: none;
+    outline: none;
   }
 
   .searchBar:hover {
@@ -191,52 +192,31 @@
   .searchResult_normal:hover {
     background-color: #b8b8b8;
   }
-  
+
   .searchResult_normal:focus {
     background-color: #b8b8b8;
   }
-  
+
   .searchResult_normal {
     padding: 0.6rem;
     background-color: #c8c8c8;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     /*margin: 0.1rem;*/
     border-radius: 0.1rem;
   }
-  
+
   .searchResult_close:hover {
     background-color: #b8b8b8;
   }
-  
+
   .searchResult_close {
     padding: 0.6rem;
     background-color: #c8c8c8;
     /*margin: 0.1rem;*/
     border-radius: 0.1rem;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     font-weight: bold;
   }
-
-
-
-}
-
-/* WEBSITE TITLE */
-.websiteTitleContainer {
-  width: 100vw;
-  background-color: rgb(var(--background-accent-light-rgb));
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 0rem 0rem 2rem 0rem;
-}
-
-.websiteTitle {
-  margin: 2rem;
-  padding: 2rem;
-  background-color: var(--maryland-emphasis-background);
-  color: var(--maryland-emphasis-foreground);
-  width: fit-content;
 }
 
 /* MODAL */
@@ -289,13 +269,11 @@ body.activeModal {
   top: 0.9rem;
   right: 0.9rem;
   padding: 0 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   font-size: 1rem;
   cursor: pointer;
   background: #f1f1f1;
 }
-
-
 
 .modalCloseBar {
   position: absolute;
@@ -312,7 +290,7 @@ body.activeModal {
   top: 7.2rem;
   right: 2.6rem;
   padding: 0 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-roboto);
   font-size: 1.8rem;
   cursor: pointer;
   border: none;
@@ -348,27 +326,28 @@ body.activeModal {
     font-size: 23px;
     font-weight: normal;
   }
-  
+
   .modalTrackDiv {
     position: absolute;
     top: 7.2rem;
     right: 2.6rem;
     padding: 0 0;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     font-size: 1.8rem;
     cursor: pointer;
     border: none;
     width: 5.8rem;
     text-align: center;
     color: black;
-  
+
     background: rgb(200, 200, 200);
-  
-    background: linear-gradient(to left, rgb(200, 200, 200) 50%, green 50%) right;
+
+    background: linear-gradient(to left, rgb(200, 200, 200) 50%, green 50%)
+      right;
     background-size: 200%;
     transition: 0.45s ease-out;
   }
-  
+
   .modalTrackDiv:hover {
     background-position: left;
     color: white;
@@ -379,7 +358,7 @@ body.activeModal {
     top: 0.9rem;
     right: 0.9rem;
     padding: 0 0;
-    font-family: var(--font-mono);
+    font-family: var(--font-roboto);
     font-size: 1rem;
     cursor: pointer;
     background: rgb(200, 200, 200);
@@ -408,26 +387,29 @@ body.activeModal {
   font-size: 22px;
 }
 
-/* Card */
+/* CARD */
 .card {
   width: 21rem;
   height: 23rem;
+
+  font-size: 1rem;
   border-radius: 0rem;
   border-color: #000;
   border-width: 0.4rem;
   border-style: solid;
+
   padding: 1rem;
-  margin-top: 1.2rem;
-  margin-left: 3.8rem;
-  margin-right: 3.8rem;
+  margin: 1.2rem 3.8rem 1.2rem 3.8rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1rem;
 }
 
 .card:hover {
-  border-color: var(--maryland-gold);
+  box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: -5px 10px 267px -27px rgba(0, 0, 0, 0.24);
 }
 
 .cardTitle {
@@ -436,13 +418,8 @@ body.activeModal {
   color: black;
   margin-bottom: 1.1rem;
   margin-top: 0rem;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   letter-spacing: 2.1px;
   text-align: center;
-}
-
-.card:hover .cardTitle {
-  color: var(--bronze-testudo);
 }
 
 .cardDescription {
@@ -451,7 +428,6 @@ body.activeModal {
   color: black;
   margin-bottom: 1.1rem;
   margin-top: 0rem;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   letter-spacing: 2.1px;
   text-align: center;
 }
@@ -460,7 +436,8 @@ body.activeModal {
   filter: invert(0%);
 }
 
-@media (prefers-color-scheme: dark) { /* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  /* Dark Mode */
   .card {
     width: 21rem;
     height: 23rem;
@@ -481,37 +458,39 @@ body.activeModal {
   .card:hover {
     border-color: var(--maryland-gold);
   }
-  
+
   .cardTitle {
     font-size: 1.8rem;
     font-weight: 550;
     color: rgb(220, 220, 220);
     margin-bottom: 1.1rem;
     margin-top: 0rem;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     letter-spacing: 2.1px;
     text-align: center;
   }
-  
+
   .card:hover .cardTitle {
     color: var(--bronze-testudo);
   }
-  
+
   .cardDescription {
     font-size: 1.2rem;
     font-weight: 400;
     color: rgb(220, 220, 220);
     margin-bottom: 1.1rem;
     margin-top: 0rem;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     letter-spacing: 2.1px;
     text-align: center;
-  } 
+  }
 
- .cardImage {
+  .cardImage {
     filter: invert(100%);
- }
+  }
 }
 
-
-
+/* Trash Bin */
+.image {
+  width: 2rem;
+  height: 3rem;
+  color: var(--maryland-red);
+}
