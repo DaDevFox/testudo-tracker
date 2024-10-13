@@ -1,113 +1,124 @@
 import { NextResponse } from "next/server";
 import { MongoClient } from "mongodb";
 
+// DANGER: FLUSH ONLY IF YOU KNOW WHAT YOU'RE DOING
+const flush = true;
+// if flushing only
+const sort = true;
 export const dynamic = "force-dynamic";
 
-export function GET(request) {
-  const run = async () => {
-    var currPage = 0;
-    var pageSize = 100;
-    var currAmount = pageSize;
+export const currSemester = "202501";
 
-    console.log("");
-    console.log("##########################");
-    console.log("#                        #");
-    console.log("# Updating Testudo Index #");
-    console.log("#                        #");
-    console.log("##########################");
-    console.log("");
+export const detailed_scraper_api = (currPage, pageSize) =>
+  `${process.env.DETAILED_SCRAPER_URL}/v1/courses/sections?page=${currPage}&per_page=${pageSize}&semester=${currSemester}`;
 
-    const startTime = new Date();
-    var smallStartTime = new Date();
+export async function GET(request) {
+  var currPage = 0;
+  var pageSize = 100;
+  var currAmount = pageSize;
 
-    const client = new MongoClient(process.env.MONGODB_URI, {});
+  console.log("");
+  console.log("##########################");
+  console.log("#                        #");
+  console.log("# Updating Testudo Index #");
+  console.log("#                        #");
+  console.log("##########################");
+  console.log("");
 
-    // connect to Mongo client for read/write
-    await client.connect();
-    console.log("test");
+  const startTime = new Date();
+  var smallStartTime = new Date();
 
-    // FIRST retrieve all data from umd.io api
+  const client = new MongoClient(process.env.MONGODB_URI, {});
 
-    const database = client.db("testudo-index");
-    const collection = database.collection("section-index");
+  // connect to Mongo client for read/write
+  await client.connect();
+  console.log("test");
 
-    var coursesToInsert = [];
-    var coursesSeen = {};
+  // FIRST retrieve all data from umd.io api
+  const database = client.db("testudo-index");
+  const collection = database.collection("section-index");
 
-    // loop through pages, always at first to check if anything and until we hit the end
-    while (currPage == 0 || currAmount == pageSize) {
-      const response = await fetch(
-        `http://api.umd.io/v1/courses/sections?page=${currPage}&per_page=${pageSize}`
-      );
+  var coursesToInsert = [];
+  var coursesSeen = {};
 
-      if (!response.ok) {
-        console.log(`Response status: ${response.status}`);
-        break;
-      }
+  // DANGER: FLUSH ONLY IF YOU KNOW WHAT YOU'RE DOING
+  if (flush) console.log(await collection.deleteMany({}));
 
-      console.log("received courses, deserializing");
-      const json = await response.json();
-      currAmount = json.length;
+  // loop through pages, always at first to check if anything and until we hit the end
+  while (currPage == 0 || currAmount == pageSize) {
+    console.log(
+      `page ${currPage} (${pageSize * currPage}-${pageSize * (currPage + 1)})`
+    );
+    const response = await fetch(detailed_scraper_api(currPage, pageSize));
 
-      for (var i = 0; i < json.length; i++) {
-        var item = json[i];
-        console.log(`${item.section_id} --- checking`);
-
-        // check if in mongo db
-        var result = await collection.findOne({
-          course_id: item.section_id,
-        });
-
-        if (result == null) {
-          console.log("inserting");
-          coursesToInsert.push({
-            course_id: item.section_id,
-            professor: item.instructors[0],
-          });
-        } else {
-          console.log("exists");
-          coursesSeen[item.section_id] = {
-            course_id: item.section_id,
-            professor: item.instructors[0],
-          };
-        }
-        console.log("complete");
-      }
-
-      var smallEndTime = new Date();
-
-      console.log(
-        "retreived " +
-          currAmount +
-          " in " +
-          (smallEndTime - smallStartTime) +
-          "ms"
-      );
-
-      smallStartTime = smallEndTime;
-      currPage++;
+    if (!response.ok) {
+      console.log(`Response status: ${response.status}`);
+      break;
     }
 
-    const endTime = new Date();
+    console.log("received courses, deserializing");
+    const json = await response.json();
+    currAmount = json.length;
+
+    for (var i = 0; i < json.length; i++) {
+      var item = json[i];
+      console.log(`${item.section_id} --- checking`);
+
+      // check if in mongo db
+      var result = await collection.findOne({
+        course_id: item.section_id,
+        semester: currSemester,
+      });
+
+      if (result == null) {
+        console.log("marking for insertion");
+        coursesToInsert.push({
+          course_id: item.section_id,
+          semester: currSemester,
+          professor: item.instructors[0],
+        });
+      } else {
+        console.log("exists");
+        coursesSeen[item.section_id] = {
+          course_id: item.section_id,
+          semester: currSemester,
+          professor: item.instructors[0],
+        };
+      }
+    }
+
+    var smallEndTime = new Date();
+
     console.log(
-      `Index api retrieve complete; elapsed: ${endTime - startTime}ms`
+      "retreived " +
+        currAmount +
+        " in " +
+        (smallEndTime - smallStartTime) +
+        "ms"
     );
 
-    // SECOND update the mongo db persistent store with diff from data retrieved
-    if (coursesToInsert.length > 0) {
-      var result = await collection.insertMany(coursesToInsert);
-      if (result == null || result.insertedCount != coursesToInsert.length) {
-        console.log(`error; response received:${result}`);
-      }
-      console.log(`documents inserted; result:${result}`);
+    smallStartTime = smallEndTime;
+    currPage++;
+  }
+
+  const endTime = new Date();
+  console.log(`Index api retrieve complete; elapsed: ${endTime - startTime}ms`);
+
+  if (flush && sort) coursesToInsert.sort((a) => a.course_id);
+
+  // SECOND update the mongo db persistent store with diff from data retrieved
+  if (coursesToInsert.length > 0) {
+    var result = await collection.insertMany(coursesToInsert);
+    if (result == null || result.insertedCount != coursesToInsert.length) {
+      console.log(`error; response received:${result}`);
     }
+    console.log(`documents inserted;`);
+  }
 
-    //TODO: loop through sections found and remove sections in db not in api
+  //TODO: loop through sections found and remove sections in db not in api
 
-    client.close();
-  };
+  client.close();
 
-  run();
   return new Response(`Updated sucessfully`);
 }
 
