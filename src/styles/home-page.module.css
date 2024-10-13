@@ -11,8 +11,7 @@
 }
 
 .websiteTitleContainer {
-    position: relative;
-  
+  position: relative;
   width: 100vw;
   height: 30vh;
   min-height: 10rem;
@@ -55,10 +54,20 @@
   background-color: var(--maryland-emphasis-background);
   color: var(--maryland-emphasis-foreground);
   width: fit-content;
+
+  font-size: 2rem;
 }
 
 /* HOME PAGE */
 .homePageMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tagLineContainer{
+    width: 100%;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +83,7 @@
 
     max-width: 80vw;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 550;
     color: black;
     letter-spacing: 2.1px;

@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <div className={styles.homePageMain}>
       <WebsiteTitle />
-      <p className={styles.tagLine}>Never miss a class again</p>
+      <div className={styles.tagLineContainer}>
+        <p className={styles.tagLine}>Never miss a class again</p>
+      </div>
 
       <div className={styles.cardContainer}>
         <Card
