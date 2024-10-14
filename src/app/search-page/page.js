@@ -1,13 +1,15 @@
+"use client";
+
 import { useState } from "react";
 
 import SearchBar from "@/components/SearchBar";
 import SearchResults from "@/components/SearchResults";
 import Navbar from "@/components/Navbar";
 
-import "@/styles/page.module.css";
 import component_styles from "@/styles/components.module.css";
 import "@/styles/globals.css";
 import styles from "@/styles/search-page.module.css";
+import MongoSearch from "@/components/MongoSearch";
 
 const Search = () => {
   // Temp data
@@ -92,32 +94,26 @@ const Search = () => {
     },
   ];
 
-  // State for the search term in the search bar
-  const [query, setQuery] = useState("");
-
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
   return (
     <main className="main">
-      <Navbar />
-
       <div className={styles.title_container}>
         <span className={styles.title_span}>
           <h1>Search for a Class</h1>
         </span>
-        <div className={styles.title_block}></div> {/*the red rectangle*/}
-        <h3 className={styles.next_sem}>Upcoming Semester: Fall 2024</h3>
-        <div className={styles.subtitle_block}></div> {/*the yellow rectangle*/}
+        <h3 className={styles.sem}>This Semester: Fall 2024</h3>
       </div>
 
       <div className={styles.search_div}>
-        <div className={component_styles.searchContainer}>
-          {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
-          <SearchBar onChange={(e) => setQuery(e.target.value)} />
-          <SearchResults query={query} sections={sections} />
-        </div>
+        {/* Optional Implementation: Make the Search Results dissapear when the user clicks outside of the search bar or results */}
+        <MongoSearch
+          searchBarStyle={{ borderRadius: "0rem", width: "100%" }}
+          searchResultsStyle={{
+            marginTop: "0rem",
+            width: "100%",
+            borderRadius: "0rem",
+            transition: "none",
+          }}
+        />
       </div>
     </main>
   );

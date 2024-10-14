@@ -1,0 +1,75 @@
+.authBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  margin-top: 10rem;
+}
+
+.authBox h1 {
+  padding-bottom: 1rem;
+  color: black;
+}
+
+.authBox p {
+  padding-top: 1rem;
+}
+
+.authBox Link {
+  color: darkblue;
+}
+
+.authBox form {
+  background: var(--maryland-gold);
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  padding: 3rem;
+  width: 26rem;
+
+  gap: 1rem;
+}
+
+.authBox input {
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  border-radius: 3px;
+  border-style: none;
+  padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .authBox input {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    border-radius: 3px;
+    border-style: none;
+    padding: 1rem;
+    background-color: #a8a8a8;
+    color: black;
+  }
+}
+
+.authBox button {
+  display: block;
+  text-align: center;
+  height: 3rem;
+  border-radius: 3px;
+  border-style: none;
+  padding: 1rem;
+}
+
+.button {
+  background-color: var(--maryland-red);
+}
+
+.button:hover {
+  background-color: #ef5a6e;
+}
+
+.error {
+  color: var(--maryland-red);
+}

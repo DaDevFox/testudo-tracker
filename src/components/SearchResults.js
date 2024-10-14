@@ -1,32 +1,37 @@
 import { fuzzyCompare } from "@/utils/SearchUtils";
-import { useState, useRef } from "react";
 import styles from "@/styles/components.module.css";
 
 import Modal from "@/components/Modal";
 
-export default function SearchResults({ query, sections }) {
-  
-  
+export default function SearchResults({
+  query,
+  sections,
+  runInternalSearch,
+  ...props
+}) {
   if (query == null || query == "")
     return (
       <div className={styles.searchResultDummy}>Type text to view results</div>
     );
 
-  const items = queryItems(query, sections);
+  const sectionShortlist = runInternalSearch
+    ? queryItems(query, sections)
+    : sections;
 
-    return (
-      
-      <div className={styles.searchResults}>
-        {items}
-      </div>
-    );
+  return (
+    <div className={styles.searchResults} {...props}>
+      {sections &&
+        sections.length > 0 &&
+        generateItems(query, sectionShortlist)}
+    </div>
+  );
 }
 
-function queryItems(query, sections) {
-  const idStr = (item) => item.course_name.toLowerCase() + " " + item.section_number;
+const idStr = (item) => item.course_id;
+const fuzzyCutoff = 5; // assuming levenshtein disance -- CHANGE IF ALGO CHANGES
 
+function queryItems(query, sections) {
   const resultCount = 5;
-  const fuzzyCutoff = 5; // assuming levenshtein disance -- CHANGE IF ALGO CHANGES
 
   query = query.toLowerCase();
 
@@ -36,21 +41,32 @@ function queryItems(query, sections) {
         ? 1
         : -1;
     })
-    .slice(0, resultCount)
-    .map((item) => {
-      var close = fuzzyCompare(query, idStr(item)) <= fuzzyCutoff;
-      // if (!close) return null;
+    .slice(0, resultCount);
+}
 
+function generateItems(query, sections) {
+  return sections.map((item) => {
+    var close = fuzzyCompare(query, idStr(item)) <= fuzzyCutoff;
+    // if (!close) return null;
 
-      return (
-        
-          <div key={idStr(item)}
-          // I would like to change the font of the search results...but idk to what...
-            className={`${close ? styles.searchResult_close : styles.searchResult_normal}`}
-          >
-            {/* We can add more props to the Modal depending on what info we want to use */}
-            <Modal buttonName={item.course_name + " " + item.section_number} />
-          </div>
-      );
-    }); 
+    return (
+      <div
+        key={idStr(item)}
+        // I would like to change the font of the search results...but idk to what...
+        className={`${
+          close ? styles.searchResult_close : styles.searchResult_normal
+        }`}
+      >
+        {/* We can add more props to the Modal depending on what info we want to use */}
+        <Modal
+          buttonName={
+            item.course_id.split("-")[0] + " " + item.course_id.split("-")[1]
+          }
+          professor={item.professor}
+          waitlist_entries={item.waitlist_entries}
+          open_seats={item.open_seats}
+        />
+      </div>
+    );
+  });
 }

@@ -1,0 +1,128 @@
+/* WEBSITE TITLE */
+@keyframes onLoad {
+  from {
+    /* opacity: 0; */
+    width: 0%;
+  }
+  to{
+    /* opacity: 1; */
+    width: 100%;
+  }
+}
+
+.websiteTitleContainer {
+    position: relative;
+  
+  width: 100vw;
+  height: 30vh;
+  min-height: 10rem;
+  background-color: rgb(var(--background-accent-light-rgb));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0rem 0rem 2rem 0rem;
+}
+
+.websiteTitleContainer:before{
+    transition: 1s;
+    content: "";
+    position:absolute;
+    right: 0;
+    max-width: 1rem;
+    top: 0;
+    height: 100%;
+    background-color: var(--maryland-emphasis-background);
+    animation: 5s ease-in-out 1.5s 1 onLoad forwards;
+}
+
+
+.websiteTitleContainer:after{
+    transition: 1s;
+    content: "";
+    position:absolute;
+    left: 0;
+    max-width: 1rem;
+    top: 0;
+    height: 100%;
+    background-color: var(--maryland-emphasis-background);
+    animation: 5s ease-in-out 1.5s 1 onLoad forwards;
+}
+
+.websiteTitle {
+  margin: 2rem;
+  padding: 2rem;
+  background-color: var(--maryland-emphasis-background);
+  color: var(--maryland-emphasis-foreground);
+  width: fit-content;
+}
+
+/* HOME PAGE */
+.homePageMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tagLine {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 3rem 3rem 3rem;
+    font-family: var(--font-inter);
+
+    max-width: 80vw;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 550;
+    color: black;
+    letter-spacing: 2.1px;
+    width: fit-content;
+}
+
+.tagLine:after{
+    content: "";
+    z-index: -1;
+    bottom: -0.5rem;
+    left: 50%;
+    /* width: 100%; */
+    height: 0.31rem;
+    background-color: var(--maryland-red);
+    animation: 0.3s ease-in-out 1s 1 onLoad forwards;
+
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-items: center;
+
+    width: fit-content;
+    height: fit-content;
+    min-height: 25rem;
+    margin: 1rem;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--bronze-testudo);
+    color: white;
+    font-weight: 500;
+    font-size: 1.35rem;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.buttonContainer:hover {
+    background-color: var(--maryland-red);
+}
+
+@media (prefers-color-scheme: dark) {
+    .tagLine {
+        color: rgb(220, 220, 220);
+    }
+}
