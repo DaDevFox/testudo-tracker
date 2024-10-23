@@ -493,3 +493,12 @@ body.activeModal {
   height: 3rem;
   color: var(--maryland-red);
 }
+
+.button {
+  border: none;
+  background: none;
+}
+
+.button:hover {
+  cursor: pointer;
+}
