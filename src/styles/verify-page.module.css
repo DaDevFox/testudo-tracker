@@ -1,0 +1,31 @@
+.verify {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  margin-bottom: 10rem;
+}
+
+.verify div {
+  background-color: var(--maryland-red);
+  text-align: center;
+  border-radius: 3px;
+  padding: 2.5rem;
+  width: 26rem;
+}
+
+.verify p {
+  padding: 0.5rem;
+  font-size: small;
+  line-height: 1.5rem;
+}
+
+.button {
+  padding: 10px 24px;
+  background-color: var(--bronze-testudo);
+  width: 8.5rem;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: black;
+}
