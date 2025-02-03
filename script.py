@@ -89,14 +89,16 @@ def script_main():
                         smtpserver.login(YOUR_GOOGLE_EMAIL, YOUR_GOOGLE_EMAIL_APP_PASSWORD)                
                         sent_from = YOUR_GOOGLE_EMAIL
                         sent_to = recipient_email  
-                        email_text = course_id+" "+section+ " has " + str(open_seats.txt) + " with " +str(prof.text) + ". Sign up before the seats get taken at: app.testudo.umd.edu/main/dropAdd"
+                        email_text = f"{course_id} {section} has {open_seats.txt} with {prof.text}. Sign up before the seats get taken at: app.testudo.umd.edu/main/dropAdd"
+                        # email_text = course_id+" "+section+ " has " + str(open_seats.txt) + " with " +str(prof.text) + ". Sign up before the seats get taken at: app.testudo.umd.edu/main/dropAdd"
                         message = MIMEText(email_text, "plain")
                         message["Subject"] = str(open_seats.txt) + " open seats in " + course_id
                         message["From"] = sent_from
                         message["To"] = sent_to
                         smtpserver.sendmail(sent_from, sent_to, message.as_string())
                         smtpserver.close()                
-                        print("Email sent to "+ recipient_email+ " for "+ course_id + " " + section)
+                        print(f"Email sent to {recipient_email} for {course_id} section")
+                        # print("Email sent to "+ recipient_email+ " for "+ course_id + " " + section)
 
 
 # Create and run the scheduler to run the function every time testudo updates
