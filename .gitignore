@@ -22,6 +22,15 @@ src/secrets.txt
 # misc
 .DS_Store
 *.pem
+.venv/
+backend/.env
+backend/.env.local
+backend/.venv/
+backend/__pycache__/
+backend/build/
+backend/dist/
+backend/**/*.egg-info/
+**/__pycache__/*
 
 # debug
 npm-debug.log*

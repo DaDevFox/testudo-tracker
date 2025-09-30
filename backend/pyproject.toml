@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "testudo-scraper"
+version = "0.1.0"
+description = "Seat availability scraper and notifier for UMD Testudo"
+readme = "README.md"
+authors = [{ name = "Testudo Tracker" }]
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "apscheduler>=3.10",
+    "beautifulsoup4>=4.12",
+    "pymongo>=4.6",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "typer>=0.9",
+    "tzdata>=2024.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+]
+
+[project.scripts]
+testudo-scraper = "testudo_scraper.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

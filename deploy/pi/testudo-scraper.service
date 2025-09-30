@@ -1,0 +1,16 @@
+[Unit]
+Description=Testudo course seat scraper
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/testudo-tracker/backend
+EnvironmentFile=/opt/testudo-tracker/backend/.env
+ExecStart=/opt/testudo-tracker/backend/.venv/bin/testudo-scraper run
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
