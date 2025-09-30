@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  scraper:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: testudo-scraper:latest
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    # Uncomment if you prefer to pull from a registry instead of building locally
+    # image: ghcr.io/your-org/testudo-scraper:latest
